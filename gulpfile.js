@@ -5,7 +5,7 @@ var eslint = require('gulp-eslint');
 var jasmine = require('gulp-jasmine');
 
 var paths = {
-  main_js: ['js/vector.js'],
+  main_js: ['js/vertex.js'],
   js: ['js/*.js']
 };
 
@@ -23,7 +23,7 @@ gulp.task('build', ['lint'], function() {
     ],
     debug: true
   });
-  b.add(__dirname + '/js/vector.js');
+  b.add(__dirname + '/js/vertex.js');
   b.bundle()
       .on('error', function(error) {
         console.log(error.message); 
