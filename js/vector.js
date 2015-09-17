@@ -138,29 +138,73 @@ Vector.prototype.normalize = function() {
   return this;
 }
 
-// static methods
-Vector.normalize = function(vector) {
 
+// ---------------------------------------------
+//                Static Methods
+// ---------------------------------------------
+
+
+/**
+ * Normalizes the vector to be unit length and returns the vector.
+ * @param {Vector} vector The vector to normalize.
+ * @returns {Vector}
+ */
+Vector.normalize = function(vector) {
+  return vector.normalize();
 };
 
+
+/**
+ * Computes the minimum of the two input vectors, compared lexographically
+ * @param {Vector} a The first vector to compare
+ * @param {Vector} b The second vector to compare
+ * @returns {Vector} The minimum of the two vectors
+ */
 Vector.min = function(a, b) {
   return new Vector((a.x < b.x) ? a.x : b.x,
                     (a.y < b.y) ? a.y : b.y);
 };
 
+
+/**
+ * Computes the maximum of the two input vectors, compared lexographically
+ * @param {Vector} a The first vector to compare
+ * @param {Vector} b The second vector to compare
+ * @returns {Vector} The maximum of the two vectors
+ */
 Vector.max = function(a, b) {
   return new Vector((a.x > b.x) ? a.x : b.x,
                 		(a.y > b.y) ? a.y : b.y);
 };
  
+
+/**
+ * Computes the angle between the two input vectors
+ * @param {Vector} a The first vector
+ * @Param {Vector} b The second vector
+ * @returns {number} The length of the vector
+ */
 Vector.angleBetween = function(a, b) {
    // return Math.acos( Vector.dot(a,b) / (L2(a)*L2(b)) );
 };
 
+
+/**
+ * Returns the length of the input vector
+ * @param {Vector} vector The vector to take the length of.
+ * @returns {number} The length of the vector.
+ */
 Vector.length = function(vector) {
   return Math.sqrt(vector.x*vector.x + vector.y*vector.y);
 };
 
+
+/**
+ * Returns the dot product of the two input vectors
+ * @param {Vector} a The first vector
+ * @param {Vector} b The second vector
+ * @returns {number} The dot product
+ */
 Vector.dot = function(a, b) {
 	return a.x*b.x + a.y*b.y;
 };
