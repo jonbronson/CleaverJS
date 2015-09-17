@@ -1,18 +1,16 @@
 /**
-* @fileOverview This file defines the 2d vector class.
+* @fileOverview This file defines the 2D Vector class.
 * @author Jonathan Bronson</a>
 * @exports Vector
 */
 
-
 module.exports = (function(){ 
-
 
 /**
 * Creates a new Vector object
 * @class
-* @param x The x coordinate.
-* @param y The y coordinate.
+* @param {number} x The x coordinate.
+* @param {number} y The y coordinate.
 * @constructor
 * @alias Vector
 */
@@ -64,7 +62,7 @@ Vector.prototype.minus = function(vector) {
 
 /** 
  * Returns the dot product of this vector and the provided vector.
- * @param {Vector}
+ * @param {Vector} The second vector.
  * @returns {number}
  */
 Vector.prototype.dot = function(vector) {
@@ -74,7 +72,7 @@ Vector.prototype.dot = function(vector) {
 
 /** 
  * Returns the cross product of this vector and the provided vector.
- * @param {Vector}
+ * @param {Vector} The second vector.
  * @returns {Vector}
  */
 Vector.prototype.cross = function(vector) {
