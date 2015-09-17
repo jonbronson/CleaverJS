@@ -209,21 +209,44 @@ Vector.dot = function(a, b) {
 	return a.x*b.x + a.y*b.y;
 };
 
+
+/**
+ * Returns the cross product of the two input vectors
+ * @param {Vector} a The first vector
+ * @param {Vector} b The second vector
+ * @returns {Vector} The cross product
+ */
 Vector.cross = function(a, b) {
   return a.x*b.y - a.y*b.x;
 };
 
+
+/**
+ * Returns a new empty vector (i.e. {0, 0}) 
+ * @returns {Vector} The empty vector
+ */
 Vector.ZERO = function() { 
   return new Vector(0, 0) 
 };
 
+
+/**
+ * Returns a new unit vector along the x-axis.
+ * @returns {Vector} The unit vector
+ */
 Vector.UNIT_X = function() {
   return new Vector(1, 0);
 };
 
+
+/**
+ * Returns a new unit vector along the y-axis.
+ * @returns {Vector} The unit vector
+ */
 Vector.UNIT_Y = function() {
   return new Vector(0, 1);
 };
+
 
 return Vector;
 
