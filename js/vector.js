@@ -220,7 +220,7 @@ Vector.cross = function(a, b) {
 
 
 /**
- * Returns a new empty vector (i.e. {0, 0}) 
+ * Returns a new empty vector (i.e. (0, 0)) 
  * @returns {Vector} The empty vector
  */
 Vector.ZERO = function() { 
