@@ -1,4 +1,4 @@
-var Vector = require('../js/vector');
+var Vector = require('../js/geometry/vector');
 
 describe('Vector Tests', function() {
  
