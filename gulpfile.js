@@ -23,7 +23,7 @@ gulp.task('build', ['lint'], function() {
     ],
     debug: true
   });
-  b.add(__dirname + '/js/geometry/vertex.js');
+  b.add(__dirname + '/js/fields/floatfield.js');
   b.bundle()
       .on('error', function(error) {
         console.log(error.message); 
