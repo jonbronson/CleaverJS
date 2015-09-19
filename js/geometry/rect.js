@@ -36,7 +36,7 @@ Rect.prototype.containsRect = function(rect) {
 
 Rect.prototype.strictlyContainsRect = function(rect) {
 
-}
+};
 
 Rect.prototype.intersects = function(rect) {
 
