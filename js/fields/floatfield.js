@@ -1,17 +1,29 @@
+/**
+* @fileOverview This file defines the FloatField class.
+* @author Jonathan Bronson</a>
+* @exports FloatField
+*/
+
 var Field = require('fields/field');
 var Rect = require('geometry/rect');
 
-
 module.exports = (function(){ 
 
+
 /**
- * @constructor
- */
+* Creates a new FloatField object
+* @class
+* @param {number} width The width of the data array
+* @param {number} height The height of the data array
+* @param {Array} data The float field array.
+* @constructor
+* @alias FloatField
+* @extends Field
+*/
 var FloatField = function(width, height, data) {
 	this.data = data;
   this.bounds = new Rect(0, 0, width, height);	
 };
-
 FloatField.prototype = Object.create(Field.prototype);
 
 FloatField.prototype.nearestValueAt = function(x, y) {
@@ -24,6 +36,9 @@ var clamp = function(value, min, max) {
   return Math.min(Math.max(value, min), max);
 };
 
+/**
+ * @overide
+ */
 FloatField.prototype.valueAt = function(x, y) {  
 	x -= 0.5;
 	y -= 0.5;
@@ -60,14 +75,14 @@ FloatField.prototype.getBounds = function() {
  * @override
  */
 FloatField.prototype.getWidth = function() {
-  return this.bounds.size.x;
+  return this.bounds.width();
 };
 
 /**
  * @override
  */
 FloatField.prototype.getHeight = function() {
-  return this.bounds.size.y;
+  return this.bounds.height();
 };
 
 return FloatField;
