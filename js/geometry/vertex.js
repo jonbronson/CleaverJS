@@ -4,7 +4,7 @@
 * @exports Vertex
 */
 
-var Vector = require('vector');
+var Vector = require('geometry/vector');
 
 module.exports = (function(){ 
 

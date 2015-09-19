@@ -1,6 +1,4 @@
-
-var Vector = require('./vector');
-
+var Vector = require('geometry/vector');
 
 module.exports = (function(){
 
@@ -10,6 +8,5 @@ var Point = function(x, y) {
 
 Point.prototype = Object.create(Vector.prototype);
 Point.prototype.constructor = Point;
-
 
 }());
