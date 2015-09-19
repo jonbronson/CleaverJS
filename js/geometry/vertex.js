@@ -3,7 +3,6 @@
 * @author Jonathan Bronson</a>
 * @exports Vertex
 */
-
 var Vector = require('geometry/vector');
 
 module.exports = (function(){ 
@@ -11,16 +10,16 @@ module.exports = (function(){
 /**
 * Creates a new Vertex object
 * @class
-* @param {Vector} The position of the vertex
+* @param {Vector} position The position of the vertex
 * @constructor
-* @alias Vector
+* @alias Vertex
 */
 var Vertex = function(position) {
-	this.pos = position ? position : Vector.ZERO();
-	this.halfEdges = [];
-	this.faces = [];
-	this.parent = null;
-	this.order_ = 0;
+  this.pos = position ? position : Vector.ZERO();
+  this.halfEdges = [];
+  this.faces = [];
+  this.parent = null;
+  this.order_ = 0;
 };
 
 Vertex.prototype = Object.create(Vector.prototype);
@@ -32,7 +31,7 @@ Vertex.prototype.constructor = Vertex;
  * @returns {number}
  */
 Vertex.prototype.order = function() {	
-	return this.root().order_;
+  return this.root().order_;
 }
 
 
@@ -42,10 +41,10 @@ Vertex.prototype.order = function() {
  */
 Vertex.prototype.root = function() {
   var ptr = this;
-	while (ptr.parent) {
-		ptr = ptr.parent;		
-	}
-	return ptr;
+  while (ptr.parent) {
+    ptr = ptr.parent;		
+  }
+  return ptr;
 }
 
 return Vertex;
