@@ -10,7 +10,7 @@ module.exports = (function(){
 /**
 * Creates a new Vertex object
 * @class
-* @param {Vector} position The position of the vertex
+* @param {Point} position The position of the vertex
 * @constructor
 * @alias Vertex
 */
