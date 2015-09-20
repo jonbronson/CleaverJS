@@ -40,8 +40,8 @@ var clamp = function(value, min, max) {
  * @overide
  */
 FloatField.prototype.valueAt = function(x, y) {  
-	x -= 0.5;
-	y -= 0.5;
+  x -= 0.5;
+  y -= 0.5;
 	var u = x % 1.0;
   var v = y % 1.0;
 
@@ -68,7 +68,7 @@ FloatField.prototype.valueAt = function(x, y) {
  * @override
  */
 FloatField.prototype.getBounds = function() {
-	return this.bounds;
+  return this.bounds;
 };
 
 /**
