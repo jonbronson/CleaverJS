@@ -31,10 +31,10 @@ var MAX_LEVELS = 6;
 
 
 var Cell = function(bounds) {
-	this.bounds = bounds;
-	this.level = null;		
-	this.parent = null;
-	this.children = [];
+  this.bounds = bounds;
+  this.level = null;    
+  this.parent = null;
+  this.children = [];
 };
 
 
@@ -43,11 +43,11 @@ Cell.prototype.hasChildren = function() {
 };
 
 
-Cell.prototype.subdivide = function() {	
+Cell.prototype.subdivide = function() { 
   if(this.level == 0)
     return false;
 
-  for (var i=0; i < 4; i++) {				
+  for (var i=0; i < 4; i++) {       
     var width = 0.5*this.bounds.width();
     var height = 0.5*this.bounds.height();
     var left = this.bounds.left + ((i & _01) >> 0)*width;
@@ -60,7 +60,7 @@ Cell.prototype.subdivide = function() {
     child.parent = this;
 
     this.children.push(child);
-  }	
+  } 
 
   return true;
 };
@@ -73,7 +73,7 @@ var QuadTree = function(bounds, opt_maxLevels) {
     this.maxLevels = MAX_LEVELS;  
   }
 
-  this.bounds = bounds;	
+  this.bounds = bounds; 
   this.nLevels = this.maxLevels + 1;
   this.rootLevel = this.maxLevels;
 
@@ -128,9 +128,9 @@ QuadTree.prototype.getNeighbor = function(cell, direction) {
 };
 
 QuadTree.prototype.getNeighborAtLevel = function(cell, direction, level, opt_orParent ) {
-	var shift = 1 << cell.level;
+  var shift = 1 << cell.level;
 
-	var xLocCode = cell.xLocCode + DIR_OFFSETS[direction][0]*shift;
+  var xLocCode = cell.xLocCode + DIR_OFFSETS[direction][0]*shift;
   var yLocCode = cell.yLocCode + DIR_OFFSETS[direction][1]*shift;
 
   if (xLocCode < 0 || yLocCode < 0) {
@@ -149,13 +149,13 @@ QuadTree.prototype.getNeighborAtLevel = function(cell, direction, level, opt_orP
                    + (((yLocCode  & childBranchBit) >> (nextLevel)) << 1);
                        
     --nextLevel;
-    if (!cell.hasChildren()) {    	
-    	if (opt_orParent)
-    		break;
-    	else
-    		cell = null;
+    if (!cell.hasChildren()) {      
+      if (opt_orParent)
+        break;
+      else
+        cell = null;
     } else {
-    	cell = cell.children[childIndex];
+      cell = cell.children[childIndex];
     }
   }
 
@@ -255,7 +255,7 @@ QuadTree.prototype.balance = function() {
 };
 
 Cell.prototype.toSVG = function() {
-	var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
+  var rect = document.createElementNS("http://www.w3.org/2000/svg", 'rect');
   rect.setAttribute('x', this.bounds.left);
   rect.setAttribute('y', this.bounds.bottom);
   rect.setAttribute('height', this.bounds.width());
@@ -269,32 +269,32 @@ Cell.prototype.toSVG = function() {
 };
 
 Cell.prototype.splitSVG = function(rect) {
-	this.subdivide();
-	var svg = rect.parentElement;
-	for (var i=0; i < this.children.length; i++) {
-  	if (this.children[i]) {
-  		svg.appendChild(this.children[i].toSVG());
-  	}
+  this.subdivide();
+  var svg = rect.parentElement;
+  for (var i=0; i < this.children.length; i++) {
+    if (this.children[i]) {
+      svg.appendChild(this.children[i].toSVG());
+    }
   }
 }
 
-QuadTree.prototype.toSVG = function() {		
+QuadTree.prototype.toSVG = function() {   
   var group = document.createElementNS("http://www.w3.org/2000/svg", "g");
   var cellQueue = [];
   cellQueue.push(this.root);
 
   while (cellQueue.length > 0) {
-  	var cell = cellQueue.shift();
-  	group.appendChild(cell.toSVG());
+    var cell = cellQueue.shift();
+    group.appendChild(cell.toSVG());
 
-  	for (var i=0; i < cell.children.length; i++) {
-	  	if (cell.children[i]) {	  		
-  			cellQueue.push(cell.children[i]);
-  		}
-  	}
+    for (var i=0; i < cell.children.length; i++) {
+      if (cell.children[i]) {       
+        cellQueue.push(cell.children[i]);
+      }
+    }
   }
 
-	return group;
+  return group;
 };
 
 
@@ -364,25 +364,25 @@ QuadTree.createFromInputFields = function(fields) {
 
 QuadTree.createFromSizingField = function(sizingField) {
 
-	var tree = new QuadTree(sizingField.getBounds());
+  var tree = new QuadTree(sizingField.getBounds());
 
-	var queue = [];
-	queue.push(tree.getRoot());
+  var queue = [];
+  queue.push(tree.getRoot());
 
-	while (queue.length > 0) {
-		var cell = queue.shift();
-		var cx = cell.bounds.left + 0.5*cell.bounds.width();
-		var cy = cell.bounds.bottom + 0.5*cell.bounds.height();
-		if (cell.bounds.size.x > 0.5*sizingField.valueAt(cx, cy)) {
-			if (cell.subdivide()) {
-			  for (var i=0; i < 4; i++) {
-				  queue.push(cell.children[i]);
-				}
-			}
-		}
-	}	
+  while (queue.length > 0) {
+    var cell = queue.shift();
+    var cx = cell.bounds.left + 0.5*cell.bounds.width();
+    var cy = cell.bounds.bottom + 0.5*cell.bounds.height();
+    if (cell.bounds.size.x > 0.5*sizingField.valueAt(cx, cy)) {
+      if (cell.subdivide()) {
+        for (var i=0; i < 4; i++) {
+          queue.push(cell.children[i]);
+        }
+      }
+    }
+  } 
 
-	return tree;
+  return tree;
 };
 
 var pow2 = function(x) {
