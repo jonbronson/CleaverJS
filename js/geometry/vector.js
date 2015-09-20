@@ -1,8 +1,8 @@
 /**
-* @fileOverview This file defines the 2D Vector class.
-* @author Jonathan Bronson</a>
-* @exports Vector
-*/
+ * @fileOverview This file defines the 2D Vector class.
+ * @author Jonathan Bronson</a>
+ * @exports Vector
+ */
 
 module.exports = (function(){ 
 

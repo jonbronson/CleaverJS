@@ -1,8 +1,8 @@
 /**
-* @fileOverview This file defines the interface for scalar fields
-* @author Jonathan Bronson</a>
-* @exports Field
-*/
+ * @fileOverview This file defines the interface for scalar fields
+ * @author Jonathan Bronson</a>
+ * @exports Field
+ */
 module.exports = (function(){ 
 
 'use strict';

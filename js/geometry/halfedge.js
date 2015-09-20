@@ -1,8 +1,8 @@
 /**
-* @fileOverview This file defines the HalfEdge class.
-* @author Jonathan Bronson</a>
-* @exports Vertex
-*/
+ * @fileOverview This file defines the HalfEdge class.
+ * @author Jonathan Bronson</a>
+ * @exports Vertex
+ */
 var Vertex = require('geometry/vertex');
 
 module.exports = (function(){ 
