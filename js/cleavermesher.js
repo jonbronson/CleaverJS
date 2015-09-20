@@ -6,6 +6,9 @@ var QuadTreeMesher = require('quadtreemesher');
 var Rect = require('geometry/rect');
 var GeomUtil = require('geometry/geomutil');
 
+module.exports = (function(){ 
+
+'use strict';
 
 var _A = 0;
 var _B = 1;
@@ -20,18 +23,13 @@ var CUT = 1;
 var TRIPLE = 2;
 
 var stencilTable = [[_ABC, _A, _AB],
-						 	      [_ABC, _AB, _B],
-							      [_ABC, _B, _BC],
-							      [_ABC, _BC, _C],
-							      [_ABC, _C, _CA],
-							      [_ABC, _CA, _A]];
+                    [_ABC, _AB, _B],
+                    [_ABC, _B, _BC],
+                    [_ABC, _BC, _C],
+                    [_ABC, _C, _CA],
+                    [_ABC, _CA, _A]];
 
 var materialTable = [_A, _B, _B, _C, _C, _A];
-
-
-module.exports = (function(){ 
-
-'use strict';
 
 var CleaverMesher = function() {
 	this.alpha = 0.3;  
