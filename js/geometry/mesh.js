@@ -2,7 +2,9 @@ var HalfEdge = require('geometry/halfedge');
 var Triangle = require('geometry/triangle');
 var Vertex   = require('geometry/vertex');
 	
-module.exports = (function(){ 
+module.exports = (function(){
+
+'use strict';
 
 var Mesh = function() {
   this.verts = [];

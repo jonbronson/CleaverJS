@@ -3,8 +3,9 @@
 * @author Jonathan Bronson</a>
 * @exports Field
 */
-
 module.exports = (function(){ 
+
+'use strict';
 
 /**
  * Interface for classes that represent scalar fields

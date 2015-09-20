@@ -1,5 +1,7 @@
 module.exports = (function(){ 
 
+'use strict';
+
 var Triangle = function(v1, v2, v3, material) {
   this.v1 = v1;
   this.v2 = v2;

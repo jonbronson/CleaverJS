@@ -6,6 +6,8 @@
 
 module.exports = (function(){ 
 
+'use strict';
+
 /**
 * Creates a new Vector object
 * @class

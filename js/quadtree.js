@@ -2,6 +2,8 @@ var Rect = require('geometry/rect');
 
 module.exports = (function(){ 
 
+'use strict';
+
 var LL = 0;
 var LR = 1;
 var UL = 2;

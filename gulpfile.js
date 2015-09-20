@@ -10,8 +10,12 @@ var paths = {
 };
 
 gulp.task('lint', function() {
-  return gulp.src('js/*.js')
-      .pipe(eslint())
+  return gulp.src('js/**/*.js')
+      .pipe(eslint({
+        rules: {
+          'strict': 2
+        },
+      }))
       .pipe(eslint.format())
       .pipe(eslint.failOnError());
 });
@@ -23,7 +27,7 @@ gulp.task('build', ['lint'], function() {
     ],
     debug: true
   });
-  b.add(__dirname + '/js/quadtree.js');
+  b.add(__dirname + '/js/quadtreemesher.js');
   b.bundle()
       .on('error', function(error) {
         console.log(error.message); 

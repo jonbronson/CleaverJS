@@ -9,6 +9,7 @@ var Rect = require('geometry/rect');
 
 module.exports = (function(){ 
 
+'use strict';
 
 /**
 * Creates a new FloatField object

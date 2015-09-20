@@ -7,6 +7,8 @@ var Vertex = require('geometry/vertex');
 
 module.exports = (function(){ 
 
+'use strict';
+
 /**
 * Creates a new HalfEdge object
 * @class

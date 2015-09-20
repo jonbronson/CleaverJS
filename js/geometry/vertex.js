@@ -7,6 +7,8 @@ var Vector = require('geometry/vector');
 
 module.exports = (function(){ 
 
+'use strict';
+
 /**
 * Creates a new Vertex object
 * @class

@@ -7,6 +7,8 @@ var Point = require('geometry/point');
 
 module.exports = (function(){ 
 
+'use strict';
+
 /**
 * Creates a new rectangle object
 * @class
