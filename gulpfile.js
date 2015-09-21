@@ -1,8 +1,11 @@
-var gulp = require('gulp');
+var gulp       = require('gulp');
+var rename     = require('gulp-rename');
 var browserify = require('browserify');
-var source = require('vinyl-source-stream');
-var eslint = require('gulp-eslint');
-var jasmine = require('gulp-jasmine');
+var source     = require('vinyl-source-stream');
+var streamify  = require('gulp-streamify');
+var eslint     = require('gulp-eslint');
+var uglify     = require('gulp-uglify');
+var jasmine    = require('gulp-jasmine');
 
 var paths = {
   main_js: ['js/vertex.js'],
@@ -34,6 +37,9 @@ gulp.task('build', ['lint'], function() {
         this.emit('end');
        })
       .pipe(source('cleaver.js'))
+      .pipe(gulp.dest('./build/'))
+      .pipe(rename('cleaver.min.js'))
+      .pipe(streamify(uglify()))
       .pipe(gulp.dest('./build/'));
 });
 
