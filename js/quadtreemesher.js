@@ -142,7 +142,7 @@ QuadTreeMesher.prototype.createMesh = function() {
   queue.push(tree.getRoot());
 
   while(queue.length > 0) {
-    cell = queue.shift();
+    var cell = queue.shift();
     
     // only create triangles for leaves of tree
     if (cell.hasChildren()) {

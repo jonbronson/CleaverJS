@@ -86,4 +86,14 @@ describe('Vector Tests', function() {
       expect(difference).toEqual(expected);
     });
   });
+
+  describe('length()', function() {
+    it('method should return length of 1 for unit vectors', function() {
+      var unit_x = Vector.UNIT_X();
+      var unit_y = Vector.UNIT_Y();
+
+      expect(unit_x.length()).toEqual(1);
+      expect(unit_y.length()).toEqual(1);
+    });
+  })
 });

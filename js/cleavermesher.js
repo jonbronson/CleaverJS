@@ -5,6 +5,7 @@ var QuadTree = require('quadtree.js');
 var QuadTreeMesher = require('quadtreemesher');
 var Rect = require('geometry/rect');
 var GeomUtil = require('geometry/geomutil');
+var FloatField = require('fields/floatfield');
 
 module.exports = (function(){ 
 
@@ -111,7 +112,7 @@ CleaverMesher.prototype.computeCutForEdge_ = function(edge) {
 
 CleaverMesher.prototype.computeCuts_ = function() {
   var cuts = [];
-  for (e in this.mesh.halfEdges) {
+  for (var e in this.mesh.halfEdges) {
     var edge = this.mesh.halfEdges[e];
     if (!edge.evaluated) {
       var cut = this.computeCutForEdge_(edge);
@@ -435,6 +436,7 @@ Cleaver.Rect = Rect;
 Cleaver.QuadTree = QuadTree;
 Cleaver.QuadTreeMesher = QuadTreeMesher;
 Cleaver.CleaverMesher = CleaverMesher;
+Cleaver.FloatField = FloatField;
 
 return CleaverMesher;
 

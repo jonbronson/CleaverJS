@@ -194,9 +194,11 @@ Vector.angleBetween = function(a, b) {
  * @param {Vector} vector The vector to take the length of.
  * @returns {number} The length of the vector.
  */
-Vector.length = function(vector) {
+ /*
+Vector.Length = function(vector) {
   return Math.sqrt(vector.x*vector.x + vector.y*vector.y);
 };
+*/
 
 
 /**
