@@ -170,11 +170,11 @@ QuadTreeMesher.prototype.meshCell_ = function(cell) {
                                                 cell.bounds.bottom)));
   verts.push(this.vertexForPosition_(new Vector(cell.bounds.left + cell.bounds.width(), 
                                                 cell.bounds.bottom)));
-  verts.push(this.vertexForPosition_(new Vector(cell.bounds.left + cell.bounds.width(),
+  verts.push(this.vertexForPosition_(new Vector(cell.bounds.left   + cell.bounds.width(),
                                                 cell.bounds.bottom + cell.bounds.height())));
   verts.push(this.vertexForPosition_(new Vector(cell.bounds.left,
                                                 cell.bounds.bottom + cell.bounds.height())));
-  var v_c = this.vertexForPosition_(new Vector(cell.bounds.left + 0.5*cell.bounds.width(), 
+  var v_c = this.vertexForPosition_(new Vector(cell.bounds.left   + 0.5*cell.bounds.width(), 
                                                cell.bounds.bottom + 0.5*cell.bounds.height()));
 
   // Create Triangles Touch Each Edge

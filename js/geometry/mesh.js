@@ -35,7 +35,7 @@ Mesh.prototype.createFace = function(v1, v2, v3, material) {
 };
 
 Mesh.prototype.halfEdgeForVerts = function(v1, v2) {
-	var key = v1.toString() + '|' + v2.toString();
+	var key = v1.pos.toString() + '|' + v2.pos.toString();
   var halfEdge = this.halfEdges[key];
   if (!halfEdge) {
   	halfEdge = new HalfEdge(v2);
