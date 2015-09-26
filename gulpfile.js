@@ -44,7 +44,7 @@ gulp.task('build', ['lint'], function() {
 });
 
 gulp.task('test', ['build'], function() {
-    return gulp.src('test/**/*Spec.js')
+    return gulp.src('test/**/*-test.js')
     .pipe(jasmine({ verbose: true }));
 });
 
