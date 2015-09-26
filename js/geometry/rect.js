@@ -3,7 +3,7 @@
 * @author Jonathan Bronson</a>
 * @exports Rect
 */
-var Point = require('geometry/point');
+var Point = require('./point');
 
 module.exports = (function(){ 
 
