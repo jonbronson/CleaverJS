@@ -3,9 +3,9 @@
  * @author Jonathan Bronson</a>
  * @exports Vertex
  */
-var Vector = require('geometry/vector');
+var Vector = require('./vector');
 
-module.exports = (function(){ 
+module.exports = (function(){
 
 'use strict';
 
@@ -32,7 +32,7 @@ Vertex.prototype.constructor = Vertex;
  * Returns the material order of the vertex
  * @returns {number}
  */
-Vertex.prototype.order = function() {	
+Vertex.prototype.order = function() {
   return this.root().order_;
 }
 
@@ -44,7 +44,7 @@ Vertex.prototype.order = function() {
 Vertex.prototype.root = function() {
   var ptr = this;
   while (ptr.parent) {
-    ptr = ptr.parent;		
+    ptr = ptr.parent;
   }
   return ptr;
 }
