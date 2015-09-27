@@ -32,8 +32,10 @@ var stencilTable = [[_ABC, _A, _AB],
 
 var materialTable = [_A, _B, _B, _C, _C, _A];
 
-var CleaverMesher = function() {
-  this.alpha = 0.3;
+var DefaultAlpha = 0.3;
+
+var CleaverMesher = function(config) {
+  this.alpha = config && config[alpha] ? config[alpha] : DefaultAlpha;
 };
 
 CleaverMesher.prototype.setInputFields = function(inputFields) {
