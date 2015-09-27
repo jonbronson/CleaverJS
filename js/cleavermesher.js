@@ -112,6 +112,27 @@ CleaverMesher.prototype.computeCutForEdge_ = function(edge) {
   return cut;
 };
 
+CleaverMesher.prototype.computeTripleForFace_ = function(face) {
+  var v1 = face.v1;
+  var v2 = face.v2;
+  var v3 = face.v3;
+
+  face.evaluated = true;
+
+  if (v1.material == v2.material || v2.material == v3.material || v3.material == v1.material) {
+    return;
+  }
+
+  var triple = new Vertex(new Vector(cx, cy));
+  triple.order = 2;
+  face.triple = triple;
+
+  // check violating condition
+
+
+  return triple;
+};
+
 CleaverMesher.prototype.computeCuts_ = function() {
   var cuts = [];
   for (var e in this.mesh.halfEdges) {
@@ -127,6 +148,16 @@ CleaverMesher.prototype.computeCuts_ = function() {
 };
 
 CleaverMesher.prototype.computeTriples_ = function() {
+  var triples = [];
+  for (var f in this.mesh.faces) {
+    var face = this.mesh.faces[f];
+    if (!face.evaluated) {
+      var triple = this.computeTripleForFace_(face);
+      if (triple) {
+        triples.push(triple);
+      }
+    }
+  }
   return [];
 };
 
