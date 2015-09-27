@@ -123,7 +123,10 @@ CleaverMesher.prototype.computeTripleForFace_ = function(face) {
     return;
   }
 
-  var triple = new Vertex(new Vector(cx, cy));
+  // for now, put triple in center of triangle
+  var tx = (1.0/3.0) * (v1.pos.x + v2.pos.x + v3.pos.x);
+  var ty = (1.0/3.0) * (v1.pos.y + v2.pos.y + v3.pos.y);
+  var triple = new Vertex(new Vector(tx, ty));
   triple.order = 2;
   face.triple = triple;
 
