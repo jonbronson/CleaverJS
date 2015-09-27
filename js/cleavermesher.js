@@ -430,14 +430,6 @@ CleaverMesher.prototype.cleave = function() {
   this.createStencilTriangles();
 };
 
-window.Cleaver = {};
-Cleaver.Vector = Vector;
-Cleaver.Rect = Rect;
-Cleaver.QuadTree = QuadTree;
-Cleaver.QuadTreeMesher = QuadTreeMesher;
-Cleaver.CleaverMesher = CleaverMesher;
-Cleaver.FloatField = FloatField;
-
 return CleaverMesher;
 
 }());

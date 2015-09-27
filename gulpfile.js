@@ -30,7 +30,7 @@ gulp.task('build', ['lint'], function() {
     ],
     debug: true
   });
-  b.add(__dirname + '/js/cleavermesher.js');
+  b.add(__dirname + '/js/cleaver.js');
   b.bundle()
       .on('error', function(error) {
         console.log(error.message); 
