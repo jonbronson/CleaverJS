@@ -312,9 +312,45 @@ var maxMaterialAt = function(fields, x, y) {
   }
 
   return max;
-}
+};
 
-QuadTree.createFromInputFields = function(fields) {
+QuadTree.createFromCSGFields = function(fields, maxLevel) {
+  if (!fields || fields.length < 1) {
+    throw new Error('Must provide at least two input fields');
+  }  
+  var bounds = fields[0].getBounds();
+
+  var tree = new QuadTree(bounds, maxLevel);
+
+  for (var y=0; y < bounds.height(); y++) {
+    for (var x=0; x < bounds.width(); x++) {
+      var cellBounds = new Rect(x, y, x+1, y+1);
+
+      var lowerLeftMaterial  = maxMaterialAt(fields, cellBounds.left,     cellBounds.bottom);
+      var lowerRightMaterial = maxMaterialAt(fields, cellBounds.left + 1, cellBounds.bottom);
+      var upperRightMaterial = maxMaterialAt(fields, cellBounds.left + 1, cellBounds.bottom + 1);
+      var upperLeftMaterial  = maxMaterialAt(fields, cellBounds.left,     cellBounds.bottom + 1);      
+
+      // if cell contains transition 
+      if (lowerLeftMaterial  != lowerRightMaterial ||
+          lowerRightMaterial != upperRightMaterial ||
+          upperRightMaterial != upperLeftMaterial  ||
+          upperLeftMaterial  != lowerLeftMaterial  ||
+          upperLeftMaterial  != lowerRightMaterial ||
+          lowerLeftMaterial  != upperRightMaterial) {
+
+        console.log('adding cell at (' + x + ', ' + y + ')');
+
+        // add cell at max level
+        tree.addCellAtDepth(cellBounds.left, cellBounds.bottom, maxLevel);
+      }
+    }
+  }
+
+  return tree;
+};
+
+QuadTree.createFromFloatFields = function(fields) {
 
   if (!fields || fields.length < 1) {
     throw new Error('Must provide at least two input fields');
@@ -340,8 +376,8 @@ QuadTree.createFromInputFields = function(fields) {
       var upperRightMaterial = maxMaterialAt(fields, cellBounds.left + 1, cellBounds.bottom + 1);
       var upperLeftMaterial  = maxMaterialAt(fields, cellBounds.left,     cellBounds.bottom + 1);      
 
-      console.log(lowerLeftMaterial + ' ' + upperLeftMaterial + ' '
-                + lowerRightMaterial + ' ' + upperRightMaterial);
+      //console.log(lowerLeftMaterial  + ' ' + upperLeftMaterial + ' '
+      //          + lowerRightMaterial + ' ' + upperRightMaterial);
 
       // if cell contains transition 
       if (lowerLeftMaterial  != lowerRightMaterial ||

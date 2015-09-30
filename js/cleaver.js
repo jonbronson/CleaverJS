@@ -4,6 +4,8 @@ var QuadTree = require('quadtree.js');
 var QuadTreeMesher = require('quadtreemesher');
 var CleaverMesher = require('cleavermesher');
 var FloatField = require('fields/floatfield');
+var InverseField = require('fields/inversefield');
+var CircleField = require('fields/csg/circlefield');
 
 window.Cleaver = {};
 Cleaver.Vector = Vector;
@@ -12,3 +14,6 @@ Cleaver.QuadTree = QuadTree;
 Cleaver.QuadTreeMesher = QuadTreeMesher;
 Cleaver.CleaverMesher = CleaverMesher;
 Cleaver.FloatField = FloatField;
+Cleaver.InverseField = InverseField;
+Cleaver.CSG = {};
+Cleaver.CSG.CircleField = CircleField;
