@@ -3,7 +3,7 @@
  * @author Jonathan Bronson</a>
  * @exports CircleField
  */
-var Vector = require('geometry/vector');
+var Point = require('geometry/point');
 
 module.exports = (function(){ 
 
@@ -21,7 +21,7 @@ module.exports = (function(){
 * @extends Field
 */
 var CircleField = function(cx, cy, r, bounds) { 
-  this.c = new Vector(cx, cy);  
+  this.c = new Point(cx, cy);  
   this.r = r;
   this.bounds = bounds;
 };
@@ -30,7 +30,7 @@ var CircleField = function(cx, cy, r, bounds) {
  * @overide
  */
 CircleField.prototype.valueAt = function(x, y) {
-  var p = new Vector(x,y);    
+  var p = new Point(x,y);    
   var d = this.r - Math.abs(this.c.minus(p).length());
   return d;
 };
