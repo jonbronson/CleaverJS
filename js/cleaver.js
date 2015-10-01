@@ -1,19 +1,24 @@
 var Vector = require('geometry/vector');
+var Point = require('geometry/point');
 var Rect = require('geometry/rect');
 var QuadTree = require('quadtree.js');
 var QuadTreeMesher = require('quadtreemesher');
 var CleaverMesher = require('cleavermesher');
 var FloatField = require('fields/floatfield');
 var InverseField = require('fields/inversefield');
-var CircleField = require('fields/csg/circlefield');
+var ConstantField = require('fields/constantfield');
+var CircleField = require('fields/circlefield');
+var PathField = require('fields/pathfield');
 
 window.Cleaver = {};
 Cleaver.Vector = Vector;
+Cleaver.Point = Point;
 Cleaver.Rect = Rect;
 Cleaver.QuadTree = QuadTree;
 Cleaver.QuadTreeMesher = QuadTreeMesher;
 Cleaver.CleaverMesher = CleaverMesher;
 Cleaver.FloatField = FloatField;
+Cleaver.ConstantField = ConstantField;
 Cleaver.InverseField = InverseField;
-Cleaver.CSG = {};
-Cleaver.CSG.CircleField = CircleField;
+Cleaver.CircleField = CircleField;
+Cleaver.PathField = PathField;
