@@ -32,7 +32,7 @@ Triangle.prototype.toSVG = function() {
                    ' L ' + this.v1.pos.x + ' ' + this.v1.pos.y;
 
   path.setAttribute("d", pathString);  
-  path.setAttribute('stroke-width', '0.5')
+  path.setAttribute('stroke-width', '0.2')
   var stroke = 'black';
   var fill = '#FFFFFF';
   switch (this.material) {

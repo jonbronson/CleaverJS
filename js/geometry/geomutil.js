@@ -1,4 +1,5 @@
 var Point = require('./point');
+var Vector3 = require('./vector3');
 
 module.exports = (function(){ 
 
@@ -17,6 +18,24 @@ var GeomUtil = {
     var u_b = ub_top / ub_bot;
 
     return { 'ua': u_a, 'ub': u_b};
+  },
+
+  computePlaneIntersection: function(plane1, plane2, plane3) {
+    var n1 = plane1.getNormal();
+    var n2 = plane2.getNormal();
+    var n3 = plane3.getNormal();
+
+    var term1 = n2.cross(n3).multiply(plane1.d);
+    var term2 = n3.cross(n1).multiply(plane2.d);
+    var term3 = n1.cross(n2).multiply(plane3.d);
+    var term4 = Vector3.dot(n1, Vector3.cross(n2, n3));
+
+    var result = term1.plus(term2).plus(term3).multiply(term4);
+    if (isNaN(result.x) || isNaN(result.y) == NaN || isNaN(result.z) == NaN) {
+      var error = new Error('failed to compute 3-plane intersection');
+      console.log(error.stack());
+    }
+    return result;
   }
 };
 

@@ -1,10 +1,12 @@
-var Vector = require('geometry/vector');
-var Vertex = require('geometry/vertex');
+var Vector   = require('geometry/vector');
+var Vector3  = require('geometry/vector3');
+var Vertex   = require('geometry/vertex');
 var Triangle = require('geometry/triangle');
 var QuadTree = require('quadtree.js');
 var QuadTreeMesher = require('quadtreemesher');
-var Rect = require('geometry/rect');
-var GeomUtil = require('geometry/geomutil');
+var Rect       = require('geometry/rect');
+var Plane      = require('geometry/plane');
+var GeomUtil   = require('geometry/geomutil');
 var FloatField = require('fields/floatfield');
 
 module.exports = (function(){ 
@@ -123,10 +125,37 @@ CleaverMesher.prototype.computeTripleForFace_ = function(face) {
     return;
   }
 
-  // for now, put triple in center of triangle
-  var tx = (1.0/3.0) * (v1.pos.x + v2.pos.x + v3.pos.x);
-  var ty = (1.0/3.0) * (v1.pos.y + v2.pos.y + v3.pos.y);
-  var triple = new Vertex(new Vector(tx, ty));
+  var a1 = new Vector3(v1.pos.x, v1.pos.y, this.fields[v1.material].valueAt(v1.pos.x, v1.pos.y));
+  var a2 = new Vector3(v2.pos.x, v2.pos.y, this.fields[v1.material].valueAt(v2.pos.x, v2.pos.y));
+  var a3 = new Vector3(v3.pos.x, v3.pos.y, this.fields[v1.material].valueAt(v3.pos.x, v3.pos.y));
+  var plane1 = Plane.fromPoints(a1, a2, a3);
+
+  var b1 = new Vector3(v1.pos.x, v1.pos.y, this.fields[v2.material].valueAt(v1.pos.x, v1.pos.y));
+  var b2 = new Vector3(v2.pos.x, v2.pos.y, this.fields[v2.material].valueAt(v2.pos.x, v2.pos.y));
+  var b3 = new Vector3(v3.pos.x, v3.pos.y, this.fields[v2.material].valueAt(v3.pos.x, v3.pos.y));
+  var plane2 = Plane.fromPoints(b1, b2, b3);
+
+  var c1 = new Vector3(v1.pos.x, v1.pos.y, this.fields[v3.material].valueAt(v1.pos.x, v1.pos.y));
+  var c2 = new Vector3(v2.pos.x, v2.pos.y, this.fields[v3.material].valueAt(v2.pos.x, v2.pos.y));
+  var c3 = new Vector3(v3.pos.x, v3.pos.y, this.fields[v3.material].valueAt(v3.pos.x, v3.pos.y));
+  var plane3 = Plane.fromPoints(c1, c2, c3);
+  
+  var z = GeomUtil.computePlaneIntersection(plane1, plane2, plane3);
+
+  // if (!z || !z.x || !z.y) {    
+    console.dir(z);
+    var error = new Error('Error Computing 3-material plane intersection');
+    console.log(error.stack);
+    var tx = (1.0/3.0) * (v1.pos.x + v2.pos.x + v3.pos.x);
+    var ty = (1.0/3.0) * (v1.pos.y + v2.pos.y + v3.pos.y);
+    z = new Vector(tx, ty);    
+  // } else {
+  //   z.x += v1.pos.x;
+  //   z.y += v1.pos.y;
+  //   console.log('triple = ' + z.toString());
+  // }
+  
+  var triple = new Vertex(new Vector(z.x, z.y));
   triple.order = 2;
   face.triple = triple;
 
@@ -462,7 +491,7 @@ CleaverMesher.prototype.cleave = function() {
   this.sampleFields();
   this.computeInterfaces();
   this.generalizeTriangles();
-  this.snapAndWarpViolations();
+  //this.snapAndWarpViolations();
   this.createStencilTriangles();
 };
 
