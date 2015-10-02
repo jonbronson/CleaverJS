@@ -1,4 +1,6 @@
 var Vector = require('geometry/vector');
+var Point = require('geometry/point');
+var GeomUtil = require('geometry/geomutil');
 
 module.exports = (function(){ 
 
@@ -22,7 +24,7 @@ var PathField = function(points, order, closed, strokeWidth, bounds) {
  * @overide
  */
 PathField.prototype.valueAt = function(x, y) {
-  var p = new Vector(x,y);      
+  var p = new Point(x,y);      
   var d = distanceToLineSegment(this.points[0], this.points[1], p);
   var min_d = d;
   var end = this.closed ? this.points.length : this.points.length - 1;
@@ -33,6 +35,13 @@ PathField.prototype.valueAt = function(x, y) {
     }
   }
   min_d = min_d - this.strokeWidth;
+
+  if (this.isPointInsidePath(p) == true) {
+    min_d = Math.abs(min_d);    
+  } else {
+    min_d = -1 * Math.abs(min_d);
+  }
+
   return min_d;
 };
 
@@ -70,6 +79,26 @@ var distanceToLineSegment = function(p0, p1, x) {
   var tx = p0.plus(b.multiply(t/b.length()));            // p0.plus(p1.minus(p0).multiply(t));
   var d = x.minus(tx).length();
   return d;
+};
+
+PathField.prototype.isPointInsidePath = function(p) {
+
+  var count = 0;
+  for (var i=0; i < this.points.length; i++) {
+    var p0 = new Point(0.001, 0.1);
+    var p1 = p;
+    var p2 = this.points[i];
+    var p3 = this.points[(i+1)%(this.points.length)];
+    var result = GeomUtil.computeLineIntersection(p0, p1, p2, p3);
+    if (result.ua >= -0.0000001 && result.ua <= 1.00000001 &&
+        result.ub >= -0.0000001 && result.ub <= 1.00000001) {
+      count++;
+    }
+  }
+  if (count % 2 == 0)
+    return false;
+  else
+    return true;
 };
 
 return PathField;
