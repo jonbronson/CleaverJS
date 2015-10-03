@@ -28,7 +28,7 @@ var GeomUtil = {
     var term1 = n2.cross(n3).multiply(plane1.d);
     var term2 = n3.cross(n1).multiply(plane2.d);
     var term3 = n1.cross(n2).multiply(plane3.d);
-    var term4 = Vector3.dot(n1, Vector3.cross(n2, n3));
+    var term4 = 1.0 / Vector3.dot(n1, Vector3.cross(n2, n3));
 
     var result = term1.plus(term2).plus(term3).multiply(term4);
     if (isNaN(result.x) || isNaN(result.y) == NaN || isNaN(result.z) == NaN) {

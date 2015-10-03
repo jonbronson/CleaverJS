@@ -29,6 +29,15 @@ Vertex.prototype.constructor = Vertex;
 
 
 /**
+ * Creates a string representing coordinates of the vertex
+ * @returns {string}
+ */
+Vertex.prototype.toString = function() {
+  return ("[" + this.pos.x + ", " + this.pos.y + "]");
+};
+
+
+/**
  * Returns the material order of the vertex
  * @returns {number}
  */

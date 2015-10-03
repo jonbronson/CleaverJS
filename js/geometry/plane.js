@@ -18,7 +18,7 @@ var Plane = function(a, b, c, d) {
 
 Plane.fromPoints = function(p1, p2, p3) {
     var n = p2.minus(p1).cross(p3.minus(p1)).normalize();
-    var d = -n.dot(p1);
+    var d = n.dot(p1);
     return new Plane(n.x, n.y, n.z, d);
 };
 
