@@ -46,14 +46,14 @@ CircleField.prototype.getBounds = function() {
  * @overide
  */
 CircleField.prototype.getWidth = function() {
-  return this.bounds.size.x;
+  return this.bounds.width();
 };
 
 /**
  * @overide
  */
 CircleField.prototype.getHeight = function() {
-  return this.bounds.size.y;
+  return this.bounds.height();
 };
 
 return CircleField;
