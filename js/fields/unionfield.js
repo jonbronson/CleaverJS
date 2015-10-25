@@ -44,14 +44,14 @@ UnionField.prototype.getBounds = function() {
  * @overide
  */
 UnionField.prototype.getWidth = function() {
-  return this.bounds.size.width;
+  return this.bounds.width();
 };
 
 /**
  * @overide
  */
 UnionField.prototype.getHeight = function() {
-  return this.bounds.size.height;
+  return this.bounds.height();
 };
 
 return UnionField;
