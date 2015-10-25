@@ -27,7 +27,7 @@ var DIR_OPPOSITES = [
   [ LL, LR ]  // + y
   ];
 
-var MAX_LEVELS = 6; 
+var MAX_LEVELS = 8; 
 
 
 var Cell = function(bounds) {
@@ -339,10 +339,11 @@ QuadTree.createFromCSGFields = function(fields, maxLevel) {
           upperLeftMaterial  != lowerRightMaterial ||
           lowerLeftMaterial  != upperRightMaterial) {
 
-        console.log('adding cell at (' + x + ', ' + y + ')');
+        // add cell at max level        
+        var xx = (cellBounds.left / bounds.width()) * tree.maxVal;
+        var yy = (cellBounds.bottom / bounds.height()) * tree.maxVal;
 
-        // add cell at max level
-        tree.addCellAtDepth(cellBounds.left, cellBounds.bottom, maxLevel);
+        tree.addCellAtDepth(xx, yy, maxLevel);
       }
     }
   }
