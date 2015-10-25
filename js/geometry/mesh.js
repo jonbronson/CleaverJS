@@ -1,7 +1,7 @@
 var HalfEdge = require('./halfedge');
 var Triangle = require('./triangle');
 var Vertex   = require('./vertex');
-	
+
 module.exports = (function(){
 
 'use strict';
@@ -41,7 +41,7 @@ Mesh.prototype.halfEdgeForVerts = function(v1, v2) {
   	halfEdge = new HalfEdge(v2);
   	v1.halfEdges.push(halfEdge);
   	this.halfEdges[key] = halfEdge;
-  }	  
+  }
   return halfEdge;
 };
 
@@ -67,14 +67,14 @@ Mesh.prototype.buildAdjacency = function() {
 		this.faces[f].halfEdges[0].mate.mate = this.faces[f].halfEdges[0];
 		this.faces[f].halfEdges[1].mate.mate = this.faces[f].halfEdges[1];
 		this.faces[f].halfEdges[2].mate.mate = this.faces[f].halfEdges[2];
-		
+
 		this.faces[f].halfEdges[0].next = this.faces[f].halfEdges[1];
 		this.faces[f].halfEdges[1].next = this.faces[f].halfEdges[2];
 		this.faces[f].halfEdges[2].next = this.faces[f].halfEdges[0];
-	}	
+	}
 };
 
-Mesh.prototype.getEdgesAroundVertex = function(vertex) {	
+Mesh.prototype.getEdgesAroundVertex = function(vertex) {
 	return vertex.halfEdges;
 };
 
@@ -97,13 +97,18 @@ Mesh.prototype.getFacesAroundEdge = function(edge) {
 	return faces;
 };
 
+/* Todo, replace with Faces and make private variables use _ notation */
+Mesh.prototype.getFaces = function() {
+	return this.faces;
+}
+
 Mesh.prototype.getVerticesAroundFace = function(triangle) {
 	var verts = [triangle.v1, triangle.v2, triangle.v3];
 	return verts;
 };
 
 Mesh.prototype.getEdgesAroundFace = function(triangle) {
-	var edges = [triangle.halfEdges[0], 
+	var edges = [triangle.halfEdges[0],
 							 triangle.halfEdges[1],
 							 triangle.halfEdges[2]];
 	return edges;

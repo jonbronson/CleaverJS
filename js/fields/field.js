@@ -1,9 +1,10 @@
 /**
  * @fileOverview This file defines the interface for scalar fields
  * @author Jonathan Bronson</a>
+ * TODO: Rename ScalarField
  * @exports Field
  */
-module.exports = (function(){ 
+module.exports = (function(){
 
 'use strict';
 
@@ -22,12 +23,12 @@ Field.prototype.valueAt = function(x, y) {};
 
 /**
  * Get the bounding box of the field
- * @returns {Rect} 
+ * @returns {Rect}
  */
 Field.prototype.getBounds = function() {};
 
 /**
- * Get the width of the field 
+ * Get the width of the field
  * @returns {number}
  */
 Field.prototype.getWidth = function() {};

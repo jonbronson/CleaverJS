@@ -3,9 +3,9 @@
  * @author Jonathan Bronson</a>
  * @exports CircleField
  */
-var Point = require('geometry/point');
+var Point = require('../geometry/point');
 
-module.exports = (function(){ 
+module.exports = (function(){
 
 'use strict';
 
@@ -20,8 +20,8 @@ module.exports = (function(){
 * @alias CircleField
 * @extends Field
 */
-var CircleField = function(cx, cy, r, bounds) { 
-  this.c = new Point(cx, cy);  
+var CircleField = function(cx, cy, r, bounds) {
+  this.c = new Point(cx, cy);
   this.r = r;
   this.bounds = bounds;
 };
@@ -30,7 +30,7 @@ var CircleField = function(cx, cy, r, bounds) {
  * @overide
  */
 CircleField.prototype.valueAt = function(x, y) {
-  var p = new Point(x,y);    
+  var p = new Point(x,y);
   var d = this.r - Math.abs(this.c.minus(p).length());
   return d;
 };
@@ -46,14 +46,14 @@ CircleField.prototype.getBounds = function() {
  * @overide
  */
 CircleField.prototype.getWidth = function() {
-  return this.bounds.size.x;
+  return this.bounds.width();
 };
 
 /**
  * @overide
  */
 CircleField.prototype.getHeight = function() {
-  return this.bounds.size.y;
+  return this.bounds.height();
 };
 
 return CircleField;
