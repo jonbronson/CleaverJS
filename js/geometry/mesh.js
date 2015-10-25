@@ -1,6 +1,6 @@
-var HalfEdge = require('geometry/halfedge');
-var Triangle = require('geometry/triangle');
-var Vertex   = require('geometry/vertex');
+var HalfEdge = require('./halfedge');
+var Triangle = require('./triangle');
+var Vertex   = require('./vertex');
 	
 module.exports = (function(){
 

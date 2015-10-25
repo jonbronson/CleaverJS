@@ -1,8 +1,8 @@
-var QuadTree = require('quadtree');
-var Triangle = require('geometry/triangle');
-var Vertex = require('geometry/vertex');
-var Vector = require('geometry/vector');
-var Mesh = require('geometry/mesh');
+var QuadTree = require('./quadtree');
+var Triangle = require('./geometry/triangle');
+var Vertex = require('./geometry/vertex');
+var Vector = require('./geometry/vector');
+var Mesh = require('./geometry/mesh');
 
 module.exports = (function(){
 

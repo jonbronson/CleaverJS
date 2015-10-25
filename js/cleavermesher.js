@@ -1,13 +1,13 @@
-var Vector   = require('geometry/vector');
-var Vector3  = require('geometry/vector3');
-var Vertex   = require('geometry/vertex');
-var Triangle = require('geometry/triangle');
-var QuadTree = require('quadtree.js');
-var QuadTreeMesher = require('quadtreemesher');
-var Rect       = require('geometry/rect');
-var Plane      = require('geometry/plane');
-var GeomUtil   = require('geometry/geomutil');
-var FloatField = require('fields/floatfield');
+var Vector   = require('./geometry/vector');
+var Vector3  = require('./geometry/vector3');
+var Vertex   = require('./geometry/vertex');
+var Triangle = require('./geometry/triangle');
+var QuadTree = require('./quadtree.js');
+var QuadTreeMesher = require('./quadtreemesher');
+var Rect       = require('./geometry/rect');
+var Plane      = require('./geometry/plane');
+var GeomUtil   = require('./geometry/geomutil');
+var FloatField = require('./fields/floatfield');
 
 module.exports = (function(){ 
 
@@ -143,12 +143,12 @@ CleaverMesher.prototype.computeTripleForFace_ = function(face) {
   var z = GeomUtil.computePlaneIntersection(plane1, plane2, plane3);
 
   // if (!z || !z.x || !z.y) {    
-    console.dir(z);
-    var error = new Error('Error Computing 3-material plane intersection');
-    console.log(error.stack);
-    var tx = (1.0/3.0) * (v1.pos.x + v2.pos.x + v3.pos.x);
-    var ty = (1.0/3.0) * (v1.pos.y + v2.pos.y + v3.pos.y);
-    z = new Vector(tx, ty);    
+    // console.dir(z);
+    // var error = new Error('Error Computing 3-material plane intersection');
+    // console.log(error.stack);
+    // var tx = (1.0/3.0) * (v1.pos.x + v2.pos.x + v3.pos.x);
+    // var ty = (1.0/3.0) * (v1.pos.y + v2.pos.y + v3.pos.y);
+    // z = new Vector(tx, ty);    
   // } else {
   //   z.x += v1.pos.x;
   //   z.y += v1.pos.y;

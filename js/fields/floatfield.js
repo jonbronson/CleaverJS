@@ -4,8 +4,8 @@
 * @exports FloatField
 */
 
-var Field = require('fields/field');
-var Rect = require('geometry/rect');
+var Field = require('./field');
+var Rect = require('../geometry/rect');
 
 module.exports = (function(){ 
 

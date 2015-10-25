@@ -3,7 +3,7 @@
  * @author Jonathan Bronson</a>
  * @exports Vertex
  */
-var Vertex = require('geometry/vertex');
+var Vertex = require('./vertex');
 
 module.exports = (function(){ 
 

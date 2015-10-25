@@ -1,4 +1,4 @@
-var Rect = require('geometry/rect');
+var Rect = require('./geometry/rect');
 
 module.exports = (function(){ 
 
