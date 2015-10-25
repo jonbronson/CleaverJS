@@ -58,6 +58,10 @@ Vertex.prototype.root = function() {
   return ptr;
 }
 
+Vertex.CreateAt = function(x, y) {
+  return new Vertex(new Vector(x, y));
+};
+
 return Vertex;
 
 }());
