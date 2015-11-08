@@ -1,3 +1,8 @@
+/**
+ * @fileOverview This file defines the distance field for a path
+ * @author Jonathan Bronson</a>
+ * @exports PathField
+ */
 var Vector = require('geometry/vector');
 var Point = require('geometry/point');
 var GeomUtil = require('geometry/geomutil');
@@ -12,6 +17,18 @@ var ORDER = {
   '3': 'cubic'
 };
 
+/**
+ * Creates a new PathField object
+ * @class
+ * @param {Array.<Point>} points The points defining the path.
+ * @param {number} order The path bezier order.
+ * @param {boolean} closed Whether the path is closed or not.
+ * @param {number} strokeWidth The thickness of the path stroke.
+ * @param {Rect} bounds The bounds of the field.
+ * @constructor
+ * @alias PathField
+ * @extends Field
+ */
 var PathField = function(points, order, closed, strokeWidth, bounds) {
   this.points = points;
   this.order = order;

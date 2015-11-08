@@ -5,20 +5,20 @@
 */
 var Point = require('./point');
 
-module.exports = (function(){ 
+module.exports = (function(){
 
 'use strict';
 
 /**
-* Creates a new rectangle object
-* @class
-* @param {number} left The left x coordinate of the rectangle.
-* @param {number} bottom The bottom y coordinate of the rectangle.
-* @param {number} right The right x coordinate of the rectangle.
-* @param {number} top The top y coordinate of the rectangle.
-* @constructor
-* @alias Rect
-*/
+ * Creates a new rectangle object
+ * @class
+ * @param {number} left The left x coordinate of the rectangle.
+ * @param {number} bottom The bottom y coordinate of the rectangle.
+ * @param {number} right The right x coordinate of the rectangle.
+ * @param {number} top The top y coordinate of the rectangle.
+ * @constructor
+ * @alias Rect
+ */
 var Rect = function(left, bottom, right, top) {
   this.left = left;
   this.bottom = bottom;

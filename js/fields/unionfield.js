@@ -9,14 +9,14 @@ module.exports = (function(){
 'use strict';
 
 /**
-* Creates a new UnionField object
-* @class
-* @param {Field[]} fields The array of fields which this field is a union of.
-* @param {Rect} bounds The bounds of the field.
-* @constructor
-* @alias UnionField
-* @extends Field
-*/
+ * Creates a new UnionField object
+ * @class
+ * @param {Field[]} fields The array of fields which this field is a union of.
+ * @param {Rect} bounds The bounds of the field.
+ * @constructor
+ * @alias UnionField
+ * @extends Field
+ */
 var UnionField = function(fields, bounds) {
   this.fields = fields;
   this.bounds = bounds;

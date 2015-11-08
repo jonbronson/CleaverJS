@@ -4,20 +4,20 @@
  * @exports ConstantField
  */
 
-module.exports = (function(){ 
+module.exports = (function(){
 
 'use strict';
 
 /**
-* Creates a new ConstantField object
-* @class
-* @param {number} value The constant value throughout the field.
-* @param {Rect} bounds The bounding box of the field.
-* @constructor
-* @alias ConstantField
-* @extends Field
-*/
-var ConstantField = function(value, bounds) {  
+ * Creates a new ConstantField object
+ * @class
+ * @param {number} value The constant value throughout the field.
+ * @param {Rect} bounds The bounding box of the field.
+ * @constructor
+ * @alias ConstantField
+ * @extends Field
+ */
+var ConstantField = function(value, bounds) {
   this.value = value;
   this.bounds = bounds;
 };

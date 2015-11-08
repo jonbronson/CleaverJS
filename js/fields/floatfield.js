@@ -12,15 +12,15 @@ module.exports = (function(){
 'use strict';
 
 /**
-* Creates a new FloatField object
-* @class
-* @param {number} width The width of the data array
-* @param {number} height The height of the data array
-* @param {Array} data The float field array.
-* @constructor
-* @alias FloatField
-* @extends Field
-*/
+ * Creates a new FloatField object
+ * @class
+ * @param {number} width The width of the data array
+ * @param {number} height The height of the data array
+ * @param {Array} data The float field array.
+ * @constructor
+ * @alias FloatField
+ * @extends Field
+ */
 var FloatField = function(width, height, data) {
 	this.data = data;
   this.bounds = new Rect(0, 0, width, height);

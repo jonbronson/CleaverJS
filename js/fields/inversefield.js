@@ -4,20 +4,20 @@
  * @exports InverseField
  */
 
-module.exports = (function(){ 
+module.exports = (function(){
 
 'use strict';
 
 /**
-* Creates a new InverseField object
-* @class
-* @param {Field} field The field which this field is the inverse of.
-* @constructor
-* @alias InverseField
-* @extends Field
-*/
-var InverseField = function(field) {  
-  this.field = field; 
+ * Creates a new InverseField object
+ * @class
+ * @param {Field} field The field which this field is the inverse of.
+ * @constructor
+ * @alias InverseField
+ * @extends Field
+ */
+var InverseField = function(field) {
+  this.field = field;
   this.bounds = field.bounds;
 };
 

@@ -10,14 +10,15 @@ module.exports = (function(){
 'use strict';
 
 /**
-* Creates a new TransformedField object
-* @class
-* @param {Field} field The field which this field transforms.
-* @param {Matrix} transform The transform matrix to apply to the input field.
-* @constructor
-* @alias TransformedField
-* @extends Field
-*/
+ * Creates a new TransformedField object
+ * @class
+ * @param {Field} field
+ * @param {Matrix} transform
+ * @param {Rect} bounds
+ * @constructor
+ * @alias TransformedField
+ * @extends Field
+ */
 var TransformedField = function(field, transform, bounds) {
   this.field = field;
   this.transform = transform;
