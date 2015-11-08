@@ -9,6 +9,13 @@ module.exports = (function(){
 
 'use strict';
 
+/**
+* Creates a new ScaledField object
+* @class
+* @constructor
+* @alias ScaledField
+* @extends Field
+*/
 var ScaledField = function(field, scale, bounds) {
   this.field = field;
   this.scale = scale;
