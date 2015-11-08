@@ -1,7 +1,8 @@
 var Point = require('./point');
+var Vector = require('./vector');
 var Vector3 = require('./vector3');
 
-module.exports = (function(){ 
+module.exports = (function(){
 
 'use strict';
 
@@ -36,6 +37,22 @@ var GeomUtil = {
       console.log(error.stack());
     }
     return result;
+  },
+
+  computeMeshAngles: function(mesh) {
+    var angles = [];
+    for (var f=0; f < mesh.faces.length; f++) {
+      var face = mesh.faces[f];
+      var p = [face.v1.pos, face.v2.pos, face.v3.pos];
+      for (var i=0; i < 3; i++) {
+        var vec1 = p[(i+1)%3].minus(p[i]).normalize();
+        var vec2 = p[(i+2)%3].minus(p[i]).normalize();
+        var theta = Math.acos(Vector.dot(vec1, vec2));
+        theta *= 180 / Math.PI;
+        angles.push(theta);
+      }
+    }
+    return angles;
   }
 };
 
