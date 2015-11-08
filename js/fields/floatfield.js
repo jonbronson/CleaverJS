@@ -27,12 +27,25 @@ var FloatField = function(width, height, data) {
 };
 FloatField.prototype = Object.create(Field.prototype);
 
+/**
+ * Returns the nearest neighbor L1 value.
+ * @param {number} x coordinate
+ * @param {number} y coordinate
+ * @returns {number}
+ */
 FloatField.prototype.nearestValueAt = function(x, y) {
 	var x_index = Math.round(x);
 	var y_index = Math.round(y);
 	return this.data[y_index*this.bounds.size.x + x_index];
 };
 
+/**
+ * Clamps the value between min and max.
+ * @param {number} value The value to clamp.
+ * @param {number} min The minimum value of the valid range.
+ * @param {number} max The maximum value of the valid range.
+ * @returns {number}
+ */
 var clamp = function(value, min, max) {
   return Math.min(Math.max(value, min), max);
 };

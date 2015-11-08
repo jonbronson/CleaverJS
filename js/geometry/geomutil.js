@@ -8,6 +8,14 @@ module.exports = (function(){
 
 var GeomUtil = {
 
+  /**
+   * Computes the intersection point of two lines, each defined by two points.
+   * @param {Point} p1 First point of Line 1
+   * @param {Point} p2 Second Point of Line 1
+   * @param {Point} p3 First Point of Line 2
+   * @param {Point} p4 Second Point of Line 2
+   * @returns {Object} The intersection parameters.
+   */
   computeLineIntersection: function(p1, p2, p3, p4) {
     var ua_top = (p4.x - p3.x)*(p1.y - p3.y) - (p4.y - p3.y)*(p1.x - p3.x);
     var ua_bot = (p4.y - p3.y)*(p2.x - p1.x) - (p4.x - p3.x)*(p2.y - p1.y);
@@ -21,6 +29,13 @@ var GeomUtil = {
     return { 'ua': u_a, 'ub': u_b};
   },
 
+  /**
+   * Computes the intersection point of three planes.
+   * @param {Plane} plane1
+   * @param {Plane} plane2
+   * @param {Plane} plane3
+   * @returns {Point}
+   */
   computePlaneIntersection: function(plane1, plane2, plane3) {
     var n1 = plane1.getNormal();
     var n2 = plane2.getNormal();
@@ -39,6 +54,11 @@ var GeomUtil = {
     return result;
   },
 
+  /**
+   * Returns an array of all interior angles in the mesh.
+   * @param {Mesh}
+   * @returns {Array}
+   */
   computeMeshAngles: function(mesh) {
     var angles = [];
     for (var f=0; f < mesh.faces.length; f++) {

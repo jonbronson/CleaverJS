@@ -15,7 +15,6 @@ var ScaledField = function(field, scale, bounds) {
   this.bounds = bounds;
 };
 
-
 /**
  * @overide
  */
