@@ -1,4 +1,4 @@
-# cleaverjs # 
+# CleaverJS 
 A multimaterial meshing library 
 
 ### How to build ###
@@ -13,9 +13,9 @@ $> npm install -g gulp
 ```
 
 Clone the repository
-...
-git clone https://github.com/jonbronson/CleaverJS.git
-..
+```
+$> git clone https://github.com/jonbronson/CleaverJS.git
+```
 
 In the project folder, install the build dependencies using npm:
 
