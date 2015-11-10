@@ -12,7 +12,7 @@ executable:
 $> npm install -g gulp
 ```
 
-Clone the repository
+Clone the repository:
 ```
 $> git clone https://github.com/jonbronson/CleaverJS.git
 ```
