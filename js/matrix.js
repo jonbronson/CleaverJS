@@ -42,6 +42,7 @@ var Matrix = function(a, b, c, d, e, f, g, h, i) {
 /**
  * Add missing methods to the object instance.
  * @returns {Matrix}
+ * @private
  */
 Matrix.injectClassMethods_ = function(matrix){
   for (var method in Matrix.prototype){
