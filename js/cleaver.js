@@ -1,3 +1,8 @@
+/**
+ * @fileOverview This file creates the static Cleaver namespace
+ * @author Jonathan Bronson</a>
+ */
+
 window.Cleaver = {};
 
 Cleaver.CircleField    = require('fields/circlefield');

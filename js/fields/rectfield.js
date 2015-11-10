@@ -31,6 +31,7 @@ var RectField = function(rect, order, closed, strokeWidth, bounds) {
   ];
   PathField.call(this, points, order, closed, strokeWidth, bounds);
 };
+
 RectField.prototype = Object.create(PathField.prototype);
 RectField.prototype.constructor = RectField;
 
