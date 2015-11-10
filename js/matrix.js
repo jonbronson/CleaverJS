@@ -77,6 +77,7 @@ Matrix.prototype.toString = function() {
 
 /**
  * Multiplies this matrix with the second one provided and returns the result.
+ * @param {Matrix} matrix
  * @returns {Matrix}
  */
 Matrix.prototype.multiply = function(matrix) {
@@ -93,6 +94,7 @@ Matrix.prototype.multiply = function(matrix) {
 
 /**
  * Multiplies this matrix with the vector provided and returns the result.
+ * @param {Vector}
  * @returns {Vector}
  */
 Matrix.prototype.multiplyVector = function(vector) {
@@ -103,6 +105,7 @@ Matrix.prototype.multiplyVector = function(vector) {
 
 /**
  * Multiplies this matrix with the vector provided and returns the result.
+ * @param {Vector3}
  * @returns {Vector3}
  */
 Matrix.prototype.multiplyVector3 = function(vector) {
@@ -136,7 +139,8 @@ Matrix.prototype.inverse = function() {
 };
 
 /**
- * Creates a new 2d rotation matrix, with a transform of theta radians.
+ * Creates a new 2d rotation matrix
+ * @param {number} theta Amount of radians to rotate
  * @returns {Matrix}
  */
 Matrix.createRotation = function(theta) {
@@ -149,7 +153,9 @@ Matrix.createRotation = function(theta) {
 };
 
 /**
- * Creates a new 2d translation matrix using the given x and y coordinates.
+ * Creates a new 2d translation matrix
+ * @param {number} x The horizontal translation distance.
+ * @param {number} y The vertical translation distance.
  * @returns {Matrix}
  */
 Matrix.createTranslation = function(x, y) {
@@ -160,7 +166,9 @@ Matrix.createTranslation = function(x, y) {
 };
 
 /**
- * Creates a new 2d scale matrix to scale by sx horizontally and sy vertically.
+ * Creates a new 2d scale matrix
+ * @param {number} sx The horizontal scaling factor.
+ * @param {number} sy The vertical scaling factor.
  * @returns {Matrix}
  */
 Matrix.createScale = function(sx, sy) {
