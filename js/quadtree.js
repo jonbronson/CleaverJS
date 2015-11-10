@@ -1,6 +1,11 @@
-var Rect = require('./geometry/rect');
+/**
+ * @fileOverview This file defines the QuadTree class.
+ * @author Jonathan Bronson</a>
+ * @exports QuadTree
+ */
+ var Rect = require('./geometry/rect');
 
-module.exports = (function(){ 
+module.exports = (function(){
 
 'use strict';
 
@@ -21,18 +26,18 @@ var DIR_OFFSETS = [
   [ 0, +1]]; // + y
 
 var DIR_OPPOSITES = [
-  [ LR, UR ], // - x 
+  [ LR, UR ], // - x
   [ LL, UL ], // + x
   [ UL, UR ], // - y
   [ LL, LR ]  // + y
   ];
 
-var MAX_LEVELS = 8; 
+var MAX_LEVELS = 8;
 
 
 var Cell = function(bounds) {
   this.bounds = bounds;
-  this.level = null;    
+  this.level = null;
   this.parent = null;
   this.children = [];
 };
@@ -43,11 +48,11 @@ Cell.prototype.hasChildren = function() {
 };
 
 
-Cell.prototype.subdivide = function() { 
+Cell.prototype.subdivide = function() {
   if(this.level == 0)
     return false;
 
-  for (var i=0; i < 4; i++) {       
+  for (var i=0; i < 4; i++) {
     var width = 0.5*this.bounds.width();
     var height = 0.5*this.bounds.height();
     var left = this.bounds.left + ((i & _01) >> 0)*width;
@@ -60,43 +65,58 @@ Cell.prototype.subdivide = function() {
     child.parent = this;
 
     this.children.push(child);
-  } 
+  }
 
   return true;
 };
 
+/**
+ * Creates a new Matrix object
+ * @class
+ * @param {Rect} bounds
+ * @param {number} maximum number of levels to support
+ * @constructor
+ * @alias QuadTree
+ */
 var QuadTree = function(bounds, opt_maxLevels) {
-
   if (opt_maxLevels) {
     this.maxLevels = opt_maxLevels;
   } else {
-    this.maxLevels = MAX_LEVELS;  
+    this.maxLevels = MAX_LEVELS;
   }
 
-  this.bounds = bounds; 
+  this.bounds = bounds;
   this.nLevels = this.maxLevels + 1;
   this.rootLevel = this.maxLevels;
 
-  this.maxVal = pow2(this.rootLevel); 
+  this.maxVal = pow2(this.rootLevel);
   this.maxCode = this.maxVal - 1;
 
   this.root = new Cell(bounds);
   this.root.xLocCode = 0;
-  this.root.yLocCode = 0;    
+  this.root.yLocCode = 0;
   this.root.level = this.rootLevel;
 };
 
+/**
+ * Returns the root of the tree
+ * @returns {Cell}
+ */
 QuadTree.prototype.getRoot = function() {
   return this.root;
 };
 
+/**
+ * Returns the cell at the given x and y location
+ * @returns {Cell}
+ */
 QuadTree.prototype.getCell = function(xLocCode, yLocCode) {
   // if outside the tree, return NULL
   if(xLocCode < 0 || yLocCode < 0)
     return null;
   if(xLocCode > this.maxCode || yLocCode > this.maxCode)
     return null;
- 
+
   // branch to appropriate cell
   var cell = this.root;
   var nextLevel = this.rootLevel - 1;
@@ -105,13 +125,13 @@ QuadTree.prototype.getCell = function(xLocCode, yLocCode) {
     var childBranchBit = 1 << nextLevel;
     var childIndex = (((xLocCode & childBranchBit) >> nextLevel) << 0)
                   + (((yLocCode & childBranchBit) >> nextLevel) << 1);
-      
+
     --nextLevel;
     var nextcell = cell.children[childIndex];
-    if (nextcell === undefined) 
+    if (nextcell === undefined)
       return cell;
     else if (nextcell.xLocCode == xLocCode && nextcell.yLocCode == yLocCode)
-      return nextcell;      
+      return nextcell;
     else
       cell = nextcell;
   }
@@ -120,13 +140,27 @@ QuadTree.prototype.getCell = function(xLocCode, yLocCode) {
   return cell;
 }
 
+/**
+ * Returns the neighbor cell in the given direction.
+ * @param {Cell} cell The reference cell
+ * @param {number} direction The direction to look
+ * @returns {Cell}
+ */
 QuadTree.prototype.getNeighbor = function(cell, direction) {
   var shift = 1 << cell.level;
   var xLocCode = cell.xLocCode + DIR_OFFSETS[direction][0]*shift;
-  var yLocCode = cell.yLocCode + DIR_OFFSETS[direction][1]*shift;    
+  var yLocCode = cell.yLocCode + DIR_OFFSETS[direction][1]*shift;
   return this.getCell(xLocCode, yLocCode);
 };
 
+/**
+ * Returns the neighbor cell in the given direction, at the same level
+ * @param {Cell} cell The reference cell
+ * @param {number} direction The direction to look
+ * @param {number} level The level of the cell to look for
+ * @param {boolean} opt_orParent whether to return the parent cell if neighbor doesn't exist.
+ * @returns {Cell}
+ */
 QuadTree.prototype.getNeighborAtLevel = function(cell, direction, level, opt_orParent ) {
   var shift = 1 << cell.level;
 
@@ -147,9 +181,9 @@ QuadTree.prototype.getNeighborAtLevel = function(cell, direction, level, opt_orP
     var childBranchBit = 1 << nextLevel;
     var childIndex = ((xLocCode  & childBranchBit) >> (nextLevel))
                    + (((yLocCode  & childBranchBit) >> (nextLevel)) << 1);
-                       
+
     --nextLevel;
-    if (!cell.hasChildren()) {      
+    if (!cell.hasChildren()) {
       if (opt_orParent)
         break;
       else
@@ -163,10 +197,17 @@ QuadTree.prototype.getNeighborAtLevel = function(cell, direction, level, opt_orP
   return cell;
 };
 
+/**
+ * Adds a new cell to the tree at the given level and returns it.
+ * @param {number} x A x coordinate in the cell to add
+ * @param {number} y A y coordinate in the cell to add
+ * @param {number} depth The depth of the cell to add
+ * @returns {Cell}
+ */
 QuadTree.prototype.addCellAtDepth = function(x, y, depth) {
-  var xLocCode = Math.round(x - 0.5); 
-  var yLocCode = Math.round(y - 0.5); 
-  
+  var xLocCode = Math.round(x - 0.5);
+  var yLocCode = Math.round(y - 0.5);
+
   // figure out where this cell should go
   var cell = this.root;
   var nextLevel = this.rootLevel - 1;
@@ -178,7 +219,7 @@ QuadTree.prototype.addCellAtDepth = function(x, y, depth) {
     childBranchBit = 1 << nextLevel;
     childIndex = ((xLocCode & childBranchBit) >> (nextLevel))
                + (((yLocCode & childBranchBit) >> (nextLevel)) << 1);
-                
+
     --nextLevel;
     if(!cell.hasChildren()) {
       console.log('subdividing');
@@ -189,9 +230,12 @@ QuadTree.prototype.addCellAtDepth = function(x, y, depth) {
   }
 
   // return newly created leaf-cell, or existing one
-  return cell;  
+  return cell;
 };
 
+/**
+ * Subdivides tree cells until neighbor cells are at most one depth apart.
+ */
 QuadTree.prototype.balance = function() {
   var queue = [];
   var stack = [];
@@ -210,14 +254,14 @@ QuadTree.prototype.balance = function() {
       for (var i=0; i < 4; i++) {
         queue.push(cell.children[i]);
       }
-    } 
+    }
     // else put leaf on stack
     else {
       if (cell.xLocCode === 0 && cell.yLocCode === 24)  {
         console.log('pushing target cell onto stack at ' + stack.length);
       }
       stack.push(cell);
-    }    
+    }
   }
 
   // reverse breadth first list of leaves
@@ -239,7 +283,7 @@ QuadTree.prototype.balance = function() {
         ];
         if (neighborChildren[0].hasChildren() ||
             neighborChildren[1].hasChildren()) {
-          cell.subdivide();                    
+          cell.subdivide();
           break;
         }
       }
@@ -262,7 +306,7 @@ Cell.prototype.toSVG = function() {
   rect.setAttribute('width', this.bounds.height());
   rect.setAttribute('fill', 'none');
   rect.setAttribute('stroke', '#0000bb');
-  rect.setAttribute('stroke-width', '0.1');  
+  rect.setAttribute('stroke-width', '0.1');
   var that = this;
   rect.onclick=function() { window.setCurrentCell(that);  };
   return rect;
@@ -278,7 +322,7 @@ Cell.prototype.splitSVG = function(rect) {
   }
 }
 
-QuadTree.prototype.toSVG = function() {   
+QuadTree.prototype.toSVG = function() {
   var group = document.createElementNS("http://www.w3.org/2000/svg", "g");
   var cellQueue = [];
   cellQueue.push(this.root);
@@ -288,7 +332,7 @@ QuadTree.prototype.toSVG = function() {
     group.appendChild(cell.toSVG());
 
     for (var i=0; i < cell.children.length; i++) {
-      if (cell.children[i]) {       
+      if (cell.children[i]) {
         cellQueue.push(cell.children[i]);
       }
     }
@@ -301,7 +345,7 @@ QuadTree.prototype.toSVG = function() {
 
 var maxMaterialAt = function(fields, x, y) {
   var max = 0;
-  var maxValue = fields[max].valueAt(x, y)  
+  var maxValue = fields[max].valueAt(x, y)
   for (var i=0; i < fields.length; i++) {
     var value = fields[i].valueAt(x, y);
     // console.log('comparing ' + value);
@@ -317,7 +361,7 @@ var maxMaterialAt = function(fields, x, y) {
 QuadTree.createFromCSGFields = function(fields, maxLevel) {
   if (!fields || fields.length < 1) {
     throw new Error('Must provide at least two input fields');
-  }  
+  }
   var bounds = fields[0].getBounds();
 
   var tree = new QuadTree(bounds, maxLevel);
@@ -329,9 +373,9 @@ QuadTree.createFromCSGFields = function(fields, maxLevel) {
       var lowerLeftMaterial  = maxMaterialAt(fields, cellBounds.left,     cellBounds.bottom);
       var lowerRightMaterial = maxMaterialAt(fields, cellBounds.left + 1, cellBounds.bottom);
       var upperRightMaterial = maxMaterialAt(fields, cellBounds.left + 1, cellBounds.bottom + 1);
-      var upperLeftMaterial  = maxMaterialAt(fields, cellBounds.left,     cellBounds.bottom + 1);      
+      var upperLeftMaterial  = maxMaterialAt(fields, cellBounds.left,     cellBounds.bottom + 1);
 
-      // if cell contains transition 
+      // if cell contains transition
       if (lowerLeftMaterial  != lowerRightMaterial ||
           lowerRightMaterial != upperRightMaterial ||
           upperRightMaterial != upperLeftMaterial  ||
@@ -339,7 +383,7 @@ QuadTree.createFromCSGFields = function(fields, maxLevel) {
           upperLeftMaterial  != lowerRightMaterial ||
           lowerLeftMaterial  != upperRightMaterial) {
 
-        // add cell at max level        
+        // add cell at max level
         var xx = (cellBounds.left / bounds.width()) * tree.maxVal;
         var yy = (cellBounds.bottom / bounds.height()) * tree.maxVal;
 
@@ -361,7 +405,7 @@ QuadTree.createFromFloatFields = function(fields) {
   var maxDepth = 1;
   var resolution = 0;
   var maxLevel = 0;
-  while (resolution < Math.max(bounds.width(), bounds.height())) {  
+  while (resolution < Math.max(bounds.width(), bounds.height())) {
     resolution = pow2(++maxLevel);
   }
 
@@ -375,12 +419,12 @@ QuadTree.createFromFloatFields = function(fields) {
       var lowerLeftMaterial  = maxMaterialAt(fields, cellBounds.left,     cellBounds.bottom);
       var lowerRightMaterial = maxMaterialAt(fields, cellBounds.left + 1, cellBounds.bottom);
       var upperRightMaterial = maxMaterialAt(fields, cellBounds.left + 1, cellBounds.bottom + 1);
-      var upperLeftMaterial  = maxMaterialAt(fields, cellBounds.left,     cellBounds.bottom + 1);      
+      var upperLeftMaterial  = maxMaterialAt(fields, cellBounds.left,     cellBounds.bottom + 1);
 
       //console.log(lowerLeftMaterial  + ' ' + upperLeftMaterial + ' '
       //          + lowerRightMaterial + ' ' + upperRightMaterial);
 
-      // if cell contains transition 
+      // if cell contains transition
       if (lowerLeftMaterial  != lowerRightMaterial ||
           lowerRightMaterial != upperRightMaterial ||
           upperRightMaterial != upperLeftMaterial  ||
@@ -417,7 +461,7 @@ QuadTree.createFromSizingField = function(sizingField) {
         }
       }
     }
-  } 
+  }
 
   return tree;
 };
