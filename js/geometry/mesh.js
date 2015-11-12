@@ -168,7 +168,7 @@ Mesh.prototype.getEdgesAroundFace = function(triangle) {
   var edges = [triangle.halfEdges[0],
                triangle.halfEdges[1],
                triangle.halfEdges[2]];
-	return edges;
+  return edges;
 };
 
 return Mesh;

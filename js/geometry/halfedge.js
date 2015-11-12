@@ -17,10 +17,10 @@ module.exports = (function(){
  * @alias HalfEdge
  */
 var HalfEdge = function(vertex) {
-	this.vertex = vertex;
-	this.mate = null;
-	this.cut = null;
-	this.next = null;
+  this.vertex = vertex;
+  this.mate = null;
+  this.cut = null;
+  this.next = null;
 };
 
 return HalfEdge;

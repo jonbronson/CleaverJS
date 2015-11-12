@@ -174,7 +174,7 @@ Vector.min = function(a, b) {
  */
 Vector.max = function(a, b) {
   return new Vector((a.x > b.x) ? a.x : b.x,
-                		(a.y > b.y) ? a.y : b.y);
+                    (a.y > b.y) ? a.y : b.y);
 };
 
 

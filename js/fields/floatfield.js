@@ -22,7 +22,7 @@ module.exports = (function(){
  * @extends Field
  */
 var FloatField = function(width, height, data) {
-	this.data = data;
+  this.data = data;
   this.bounds = new Rect(0, 0, width, height);
 };
 FloatField.prototype = Object.create(Field.prototype);
@@ -34,9 +34,9 @@ FloatField.prototype = Object.create(Field.prototype);
  * @returns {number}
  */
 FloatField.prototype.nearestValueAt = function(x, y) {
-	var x_index = Math.round(x);
-	var y_index = Math.round(y);
-	return this.data[y_index*this.bounds.size.x + x_index];
+  var x_index = Math.round(x);
+  var y_index = Math.round(y);
+  return this.data[y_index*this.bounds.size.x + x_index];
 };
 
 /**
@@ -56,7 +56,7 @@ var clamp = function(value, min, max) {
 FloatField.prototype.valueAt = function(x, y) {
   x -= 0.5;
   y -= 0.5;
-	var u = x % 1.0;
+  var u = x % 1.0;
   var v = y % 1.0;
 
   var i0 = Math.floor(x);
