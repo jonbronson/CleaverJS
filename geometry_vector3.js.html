@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>CleaverJS - API documentation :
+      Source: geometry/vector3.js
+    </title>
+
+    <script src="scripts/prettify/prettify.js">
+    </script>
+    <script src="scripts/prettify/lang-css.js">
+    </script>
+    <!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js">
+	</script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link href="styles/bootstrap.css" rel="stylesheet">
+    <link href="styles/docs.css" rel="stylesheet">
+    <link href="styles/bootstrap-custom.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+    <script src="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/js/bootstrap.min.js">
+    </script>
+  </head>
+  <body>
+    <header class="header navbar navbar-inverse">
+      <div class="navbar-inner">
+        <div class="container-fluid">
+          <a class="brand" href="#">
+	    <strong>CleaverJS
+	    </strong> API documentation
+	  </a>
+        </div>
+      </div>
+    </header>
+
+    <div class="container-fluid">
+      <div class="row-fluid">
+          <div class="span4">
+              <h2><a href="index.html">Home</a></h2><div class="well well-small"><ul class="nav nav-list"><li class="nav-header">Classes</li><li><a href="CircleField.html"><i class="icon-shield" style="color: #0186d1"></i> CircleField</a></li><li><a href="CleaverMesher.html"><i class="icon-shield" style="color: #0186d1"></i> CleaverMesher</a></li><li><a href="ConstantField.html"><i class="icon-shield" style="color: #0186d1"></i> ConstantField</a></li><li><a href="FloatField.html"><i class="icon-shield" style="color: #0186d1"></i> FloatField</a></li><li><a href="HalfEdge.html"><i class="icon-shield" style="color: #0186d1"></i> HalfEdge</a></li><li><a href="InverseField.html"><i class="icon-shield" style="color: #0186d1"></i> InverseField</a></li><li><a href="Matrix.html"><i class="icon-shield" style="color: #0186d1"></i> Matrix</a></li><li><a href="Mesh.html"><i class="icon-shield" style="color: #0186d1"></i> Mesh</a></li><li><a href="PathField.html"><i class="icon-shield" style="color: #0186d1"></i> PathField</a></li><li><a href="Plane.html"><i class="icon-shield" style="color: #0186d1"></i> Plane</a></li><li><a href="Point.html"><i class="icon-shield" style="color: #0186d1"></i> Point</a></li><li><a href="QuadTree.html"><i class="icon-shield" style="color: #0186d1"></i> QuadTree</a></li><li><a href="QuadTreeMesher.html"><i class="icon-shield" style="color: #0186d1"></i> QuadTreeMesher</a></li><li><a href="Rect.html"><i class="icon-shield" style="color: #0186d1"></i> Rect</a></li><li><a href="RectField.html"><i class="icon-shield" style="color: #0186d1"></i> RectField</a></li><li><a href="ScaledField.html"><i class="icon-shield" style="color: #0186d1"></i> ScaledField</a></li><li><a href="TransformedField.html"><i class="icon-shield" style="color: #0186d1"></i> TransformedField</a></li><li><a href="Triangle.html"><i class="icon-shield" style="color: #0186d1"></i> Triangle</a></li><li><a href="UnionField.html"><i class="icon-shield" style="color: #0186d1"></i> UnionField</a></li><li><a href="Vector.html"><i class="icon-shield" style="color: #0186d1"></i> Vector</a></li><li><a href="Vector3.html"><i class="icon-shield" style="color: #0186d1"></i> Vector3</a></li><li><a href="Vertex.html"><i class="icon-shield" style="color: #0186d1"></i> Vertex</a></li></ul></div>
+          </div>
+
+          <div class="span8">
+            <h1 class="page-header">
+	      Source: geometry/vector3.js
+	    </h1>
+              
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source"><code>/**
+ * @fileOverview This file defines the 3D Vector class.
+ * @author Jonathan Bronson&lt;/a>
+ */
+
+module.exports = (function(){
+
+'use strict';
+
+/**
+ * Creates a new Vector3 object
+ * @class
+ * @param {number} x The x coordinate.
+ * @param {number} y The y coordinate.
+ * @param {number} z The z coordinate.
+ * @constructor
+ * @alias Vector3
+ */
+var Vector3 = function(x, y, z) {
+  this.x = x;
+  this.y = y;
+  this.z = z;
+};
+
+
+/**
+ * Creates a string representing coordinates of the vector
+ * @returns {string}
+ */
+Vector3.prototype.toString = function() {
+  return ("[" + this.x +
+         ", " + this.y +
+         ", " + this.z + "]");
+};
+
+
+/**
+ * Returns the sum of this vector and the provided vector.
+ * @param {Vector3} vector The vector to add.
+ * @returns {Vector3}
+ */
+Vector3.prototype.plus = function(vector) {
+  return new Vector3(this.x + vector.x,
+                     this.y + vector.y,
+                     this.z + vector.z);
+};
+
+
+/**
+ * Returns the difference of this vector and the provided vector.
+ * @param {Vector3} vector The vector to subtract.
+ * @returns {Vector3}
+ */
+Vector3.prototype.minus = function(vector) {
+  return new Vector3(this.x - vector.x,
+                     this.y - vector.y,
+                     this.z - vector.z);
+};
+
+
+/**
+ * Returns the dot product of this vector and the provided vector.
+ * @param {Vector3} The second vector.
+ * @returns {number}
+ */
+Vector3.prototype.dot = function(vector) {
+  return Vector3.dot(this, vector);
+};
+
+
+/**
+ * Returns the cross product of this vector and the provided vector.
+ * @param {Vector3} The second vector.
+ * @returns {Vector3}
+ */
+Vector3.prototype.cross = function(vector) {
+  return Vector3.cross(this, vector);
+};
+
+
+/**
+ * Adds the input vector and returns the result.
+ * @param {Vector3} vector The vector to add.
+ * @returns {Vector3}
+ */
+Vector3.prototype.add = function(vector) {
+  this.x += vector.x;
+  this.y += vector.y;
+  this.z += vector.z;
+  return this;
+};
+
+
+/**
+ * Subtracts the input vector and returns the result.
+ * @param {Vector3} vector The vector to subtract.
+ * @returns {Vector3}
+ */
+Vector3.prototype.subtract = function(vector) {
+  this.x -= vector.x;
+  this.y -= vector.y;
+  this.z -= vector.z;
+  return this;
+};
+
+
+/**
+ * Scales the vector and and returns the result.
+ * @param {number} scale The scalar value to multiply.
+ * @returns {Vector3}
+ */
+Vector3.prototype.multiply = function(scale) {
+  this.x *= scale;
+  this.y *= scale;
+  this.z *= scale;
+  return this;
+}
+
+
+/**
+ * Computes the euclidean length of the vector.
+ * @returns {number}
+ */
+Vector3.prototype.length = function() {
+  return Math.sqrt(this.x*this.x + this.y*this.y + this.z*this.z);
+};
+
+
+/**
+ * Normalizes the vector to be unit length and returns the vector.
+ * @returns {Vector3}
+ */
+Vector3.prototype.normalize = function() {
+  var length = this.length();
+  this.x /= length;
+  this.y /= length;
+  this.z /= length;
+  return this;
+}
+
+
+// ---------------------------------------------
+//                Static Methods
+// ---------------------------------------------
+
+
+/**
+ * Normalizes the vector to be unit length and returns the vector.
+ * @param {Vector3} vector The vector to normalize.
+ * @returns {Vector3}
+ */
+Vector3.normalize = function(vector) {
+  return vector.normalize();
+};
+
+
+/**
+ * Computes the minimum of the two input vectors, compared lexographically
+ * @param {Vector3} a The first vector to compare
+ * @param {Vector3} b The second vector to compare
+ * @returns {Vector3} The minimum of the two vectors
+ */
+Vector3.min = function(a, b) {
+  return new Vector3((a.x &lt; b.x) ? a.x : b.x,
+                     (a.y &lt; b.y) ? a.y : b.y,
+                     (a.z &lt; b.z) ? a.z : b.z);
+};
+
+
+/**
+ * Computes the maximum of the two input vectors, compared lexographically
+ * @param {Vector3} a The first vector to compare
+ * @param {Vector3} b The second vector to compare
+ * @returns {Vector3} The maximum of the two vectors
+ */
+Vector3.max = function(a, b) {
+  return new Vector3((a.x > b.x) ? a.x : b.x,
+                     (a.y > b.y) ? a.y : b.y,
+                     (a.z > b.z) ? a.z : b.z);
+};
+
+
+/**
+ * Computes the angle between the two input vectors
+ * @param {Vector3} a The first vector
+ * @Param {Vector3} b The second vector
+ * @returns {number} The length of the vector
+ */
+Vector3.angleBetween = function(a, b) {
+   // return Math.acos( Vector.dot(a,b) / (L2(a)*L2(b)) );
+};
+
+
+/**
+ * Returns the length of the input vector
+ * @param {Vector3} vector The vector to take the length of.
+ * @returns {number} The length of the vector.
+ */
+ /*
+Vector3.Length = function(vector) {
+  return Math.sqrt(vector.x*vector.x + vector.y*vector.y);
+};
+*/
+
+
+/**
+ * Returns the dot product of the two input vectors
+ * @param {Vector3} a The first vector
+ * @param {Vector3} b The second vector
+ * @returns {number} The dot product
+ */
+Vector3.dot = function(a, b) {
+  return a.x*b.x + a.y*b.y + a.z*b.z;
+};
+
+
+/**
+ * Returns the cross product of the two input vectors
+ * @param {Vector3} a The first vector
+ * @param {Vector3} b The second vector
+ * @returns {Vector3} The cross product
+ */
+Vector3.cross = function(a, b) {
+  return new Vector3(
+      a.y*b.z - a.z*b.y,
+      a.z*b.x - a.x*b.z,
+      a.x*b.y - a.y*b.x);
+};
+
+
+/**
+ * Returns a new empty vector (i.e. (0, 0))
+ * @returns {Vector3} The empty vector
+ */
+Vector3.ZERO = function() {
+  return new Vector3(0, 0, 0)
+};
+
+
+/**
+ * Returns a new unit vector along the x-axis.
+ * @returns {Vector3} The unit vector
+ */
+Vector3.UNIT_X = function() {
+  return new Vector3(1, 0, 0);
+};
+
+
+/**
+ * Returns a new unit vector along the y-axis.
+ * @returns {Vector3} The unit vector
+ */
+Vector3.UNIT_Y = function() {
+  return new Vector3(0, 1, 0);
+};
+
+
+/**
+ * Returns a new unit vector along the z-axis.
+ * @returns {Vector3} The unit vector
+ */
+Vector3.UNIT_Z = function() {
+  return new Vector3(0, 0, 1);
+};
+
+
+return Vector3;
+
+}());</code></pre>
+        </article>
+    </section>
+
+
+
+
+          </div>
+      </div>
+
+        <br clear="both">
+
+      <footer>
+<!---        Documentation generated by
+	<a href="https://github.com/jsdoc3/jsdoc">JSDoc
+	  3.4.0-dev
+	</a> on
+	Thu Nov 12 2015 00:21:53 GMT-0500 (EST)
+        <br>
+--->
+      </footer>
+      <script> prettyPrint();
+      </script>
+    </div>
+  </body>
+</html>

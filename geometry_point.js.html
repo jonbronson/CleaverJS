@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <title>CleaverJS - API documentation :
-      
+      Source: geometry/point.js
     </title>
 
     <script src="scripts/prettify/prettify.js">
@@ -42,41 +42,46 @@
 
           <div class="span8">
             <h1 class="page-header">
-	      
+	      Source: geometry/point.js
 	    </h1>
               
 
 
     
-
-
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
     <section>
-        <article><h1>CleaverJS</h1><p>A multimaterial meshing library </p>
-<h3>How to build</h3><p>Most users don't need to build this project. If all you want is to use CleaverJS, then just download one of our <a href="https://github.com/jonbronson/CleaverJS/releases">prebuilt releases</a>. If you want to build the latest developmental version or add to the library, follow the instructions below.</p>
-<p>The CleaverJS project is built using Node.js, npm, and gulp. After installing Node.js and NPM, install the gulp
-executable:</p>
-<pre class="prettyprint source"><code>$> npm install -g gulp</code></pre><p>Clone the repository:</p>
-<pre class="prettyprint source"><code>$> git clone https://github.com/jonbronson/CleaverJS.git</code></pre><p>In the project folder, install the build dependencies using npm:</p>
-<pre class="prettyprint source"><code>$> npm install</code></pre><p>Then, to build the source, run:</p>
-<pre class="prettyprint source"><code>$> gulp</code></pre><p>This will create a minified version at <code>bin/cleaver.min.js</code> and a non-minified version at <code>bin/cleaver.js</code>.</p></article>
+        <article>
+            <pre class="prettyprint source"><code>/**
+* @fileOverview This file defines the Point class.
+* @author Jonathan Bronson&lt;/a>
+*/
+var Vector = require('./vector');
+
+module.exports = (function(){
+
+'use strict';
+
+/**
+ * Creates a new Point object
+ * @class
+ * @param {number} x
+ * @param {number} y
+ * @constructor
+ * @alias Point
+ * @extends Vector
+ */
+var Point = function(x, y) {
+  Vector.call(this, x, y);
+}
+
+Point.prototype = Object.create(Vector.prototype);
+Point.prototype.constructor = Point;
+
+return Point;
+
+}());
+</code></pre>
+        </article>
     </section>
-
-
 
 
 
