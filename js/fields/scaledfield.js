@@ -25,28 +25,36 @@ var ScaledField = function(field, scale, bounds) {
 };
 
 /**
- * @overide
+ * Get the value of the field at coordinate (x,y)
+ * @override
+ * @returns {number}
  */
 ScaledField.prototype.valueAt = function(x, y) {
   return this.scale * this.field.valueAt(x,y);
 };
 
 /**
- * @overide
+ * Get the bounding box of the field
+ * @override
+ * @returns {Rect}
  */
 ScaledField.prototype.getBounds = function() {
   return this.bounds;
 };
 
 /**
- * @overide
+ * Get the width of the field
+ * @override
+ * @returns {number}
  */
 ScaledField.prototype.getWidth = function() {
   return this.bounds.width();
 };
 
 /**
- * @overide
+ * Get the height of the field
+ * @override
+ * @returns {number}
  */
 ScaledField.prototype.getHeight = function() {
   return this.bounds.height();
