@@ -208,7 +208,7 @@ Vector.Length = function(vector) {
  * @returns {number} The dot product
  */
 Vector.dot = function(a, b) {
-	return a.x*b.x + a.y*b.y;
+  return a.x*b.x + a.y*b.y;
 };
 
 
