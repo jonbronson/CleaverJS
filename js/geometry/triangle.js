@@ -1,7 +1,6 @@
 /**
  * @fileOverview This file defines the Triangle class.
  * @author Jonathan Bronson</a>
- * @exports Triangle
  */
 
 module.exports = (function(){
@@ -14,7 +13,7 @@ module.exports = (function(){
  * @param {Vertex} v1
  * @param {Vertex} v2
  * @param {Vertex} v3
- * #param {number} material
+ * @param {number} material
  * @constructor
  * @alias Triangle
  */

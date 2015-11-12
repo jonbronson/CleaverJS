@@ -3,7 +3,8 @@
  * @author Jonathan Bronson</a>
  */
 
-window.Cleaver = {};
+/** @namespace */
+var Cleaver = {};
 
 Cleaver.CircleField    = require('fields/circlefield');
 Cleaver.CleaverMesher  = require('cleavermesher');

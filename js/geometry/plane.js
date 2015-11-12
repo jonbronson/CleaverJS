@@ -1,7 +1,6 @@
 /**
 * @fileOverview This file defines the Plane class.
 * @author Jonathan Bronson</a>
-* @exports Plane
 */
 var Vector3 = require('./vector3');
 

@@ -1,7 +1,6 @@
 /**
  * @fileOverview This file defines the Intersection field class
  * @author Jonathan Bronson</a>
- * @exports IntersectionField
  */
 
 module.exports = (function(){

@@ -1,7 +1,6 @@
 /**
  * @fileOverview This file defines the inverse field class
  * @author Jonathan Bronson</a>
- * @exports InverseField
  */
 
 module.exports = (function(){

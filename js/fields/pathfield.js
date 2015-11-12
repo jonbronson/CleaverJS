@@ -1,7 +1,6 @@
 /**
  * @fileOverview This file defines the distance field for a path
  * @author Jonathan Bronson</a>
- * @exports PathField
  */
 var Vector = require('geometry/vector');
 var Point = require('geometry/point');

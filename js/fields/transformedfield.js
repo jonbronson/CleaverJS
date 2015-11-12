@@ -1,7 +1,6 @@
 /**
  * @fileOverview This file defines the Transformed field class
  * @author Jonathan Bronson</a>
- * @exports TransformedField
  */
 var Vector = require('../geometry/vector');
 

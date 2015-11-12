@@ -1,7 +1,6 @@
 /**
  * @fileOverview This file defines the distance field for a circle
  * @author Jonathan Bronson</a>
- * @exports CircleField
  */
 var Point = require('../geometry/point');
 

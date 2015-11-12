@@ -1,7 +1,6 @@
 /**
  * @fileOverview This file defines the CleaverMesher class.
  * @author Jonathan Bronson</a>
- * @exports CleaverMesher
  */
 var Vector   = require('./geometry/vector');
 var Vector3  = require('./geometry/vector3');

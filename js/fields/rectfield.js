@@ -1,7 +1,6 @@
 /**
  * @fileOverview This file defines the distance field for a rectangle
  * @author Jonathan Bronson</a>
- * @exports RectField
  */
 var Point = require('../geometry/point');
 var PathField = require('../fields/pathfield');
@@ -13,6 +12,7 @@ module.exports = (function(){
 /**
  * Creates a new RectField object
  * @class
+ * @extends PathField
  * @param {Rect} rect The rectangle being defined by the field.
  * @param {number} order The path bezier order.
  * @param {boolean} closed Whether the path is closed or not.
@@ -20,7 +20,6 @@ module.exports = (function(){
  * @param {Rect} bounds The bounds of the field.
  * @constructor
  * @alias RectField
- * @extends PathField
  */
 var RectField = function(rect, order, closed, strokeWidth, bounds) {
   var points = [

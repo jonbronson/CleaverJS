@@ -1,7 +1,6 @@
 /**
 * @fileOverview This file defines the FloatField class.
 * @author Jonathan Bronson</a>
-* @exports FloatField
 */
 
 var Field = require('./field');
@@ -16,10 +15,10 @@ module.exports = (function(){
  * @class
  * @param {number} width The width of the data array
  * @param {number} height The height of the data array
- * @param {Array} data The float field array.
+ * @param {Array.<number>} data The float field array.
  * @constructor
- * @alias FloatField
  * @extends Field
+ * @alias FloatField
  */
 var FloatField = function(width, height, data) {
   this.data = data;
@@ -51,7 +50,7 @@ var clamp = function(value, min, max) {
 };
 
 /**
- * @overide
+ * @override
  */
 FloatField.prototype.valueAt = function(x, y) {
   x -= 0.5;

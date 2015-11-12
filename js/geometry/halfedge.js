@@ -1,7 +1,6 @@
 /**
  * @fileOverview This file defines the HalfEdge class.
  * @author Jonathan Bronson</a>
- * @exports Vertex
  */
 var Vertex = require('./vertex');
 

@@ -1,7 +1,6 @@
 /**
  * @fileOverview This file defines the scaled field class
  * @author Jonathan Bronson</a>
- * @exports ScaledField
  */
 var Vector = require('../geometry/vector');
 

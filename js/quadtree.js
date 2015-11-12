@@ -1,7 +1,6 @@
 /**
  * @fileOverview This file defines the QuadTree class.
  * @author Jonathan Bronson</a>
- * @exports QuadTree
  */
  var Rect = require('./geometry/rect');
 
@@ -9,69 +8,8 @@ module.exports = (function(){
 
 'use strict';
 
-var LL = 0;
-var LR = 1;
-var UL = 2;
-var UR = 3;
-
-var _00 = 0;
-var _01 = 1;
-var _10 = 2;
-var _11 = 3;
-
-var DIR_OFFSETS = [
-  [-1,  0],  // - x
-  [+1,  0],  // + x
-  [ 0, -1],  // - y
-  [ 0, +1]]; // + y
-
-var DIR_OPPOSITES = [
-  [ LR, UR ], // - x
-  [ LL, UL ], // + x
-  [ UL, UR ], // - y
-  [ LL, LR ]  // + y
-  ];
-
-var MAX_LEVELS = 8;
-
-
-var Cell = function(bounds) {
-  this.bounds = bounds;
-  this.level = null;
-  this.parent = null;
-  this.children = [];
-};
-
-
-Cell.prototype.hasChildren = function() {
-  return (this.children.length > 0);
-};
-
-
-Cell.prototype.subdivide = function() {
-  if(this.level == 0)
-    return false;
-
-  for (var i=0; i < 4; i++) {
-    var width = 0.5*this.bounds.width();
-    var height = 0.5*this.bounds.height();
-    var left = this.bounds.left + ((i & _01) >> 0)*width;
-    var bottom = this.bounds.bottom + ((i & _10) >> 1)*height;
-    var bounds = new Rect(left, bottom, left + width, bottom + height);
-    var child = new Cell(bounds);
-    child.level = this.level - 1;
-    child.xLocCode = this.xLocCode | (((i & _01) >> 0) << child.level);
-    child.yLocCode = this.yLocCode | (((i & _10) >> 1) << child.level);
-    child.parent = this;
-
-    this.children.push(child);
-  }
-
-  return true;
-};
-
 /**
- * Creates a new Matrix object
+ * Creates a new QuadTree object
  * @class
  * @param {Rect} bounds
  * @param {number} maximum number of levels to support
@@ -523,6 +461,68 @@ var pow2 = function(x) {
     }
     return ret;
   }
+};
+
+
+var LL = 0;
+var LR = 1;
+var UL = 2;
+var UR = 3;
+
+var _00 = 0;
+var _01 = 1;
+var _10 = 2;
+var _11 = 3;
+
+var DIR_OFFSETS = [
+  [-1,  0],  // - x
+  [+1,  0],  // + x
+  [ 0, -1],  // - y
+  [ 0, +1]]; // + y
+
+var DIR_OPPOSITES = [
+  [ LR, UR ], // - x
+  [ LL, UL ], // + x
+  [ UL, UR ], // - y
+  [ LL, LR ]  // + y
+  ];
+
+var MAX_LEVELS = 8;
+
+
+var Cell = function(bounds) {
+  this.bounds = bounds;
+  this.level = null;
+  this.parent = null;
+  this.children = [];
+};
+
+
+Cell.prototype.hasChildren = function() {
+  return (this.children.length > 0);
+};
+
+
+Cell.prototype.subdivide = function() {
+  if(this.level == 0)
+    return false;
+
+  for (var i=0; i < 4; i++) {
+    var width = 0.5*this.bounds.width();
+    var height = 0.5*this.bounds.height();
+    var left = this.bounds.left + ((i & _01) >> 0)*width;
+    var bottom = this.bounds.bottom + ((i & _10) >> 1)*height;
+    var bounds = new Rect(left, bottom, left + width, bottom + height);
+    var child = new Cell(bounds);
+    child.level = this.level - 1;
+    child.xLocCode = this.xLocCode | (((i & _01) >> 0) << child.level);
+    child.yLocCode = this.yLocCode | (((i & _10) >> 1) << child.level);
+    child.parent = this;
+
+    this.children.push(child);
+  }
+
+  return true;
 };
 
 

@@ -1,7 +1,6 @@
 /**
  * @fileOverview This file defines the constance value field class
  * @author Jonathan Bronson</a>
- * @exports ConstantField
  */
 
 module.exports = (function(){

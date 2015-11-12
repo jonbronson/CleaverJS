@@ -1,7 +1,6 @@
 /**
  * @fileOverview This file defines the 2D Vertex class.
  * @author Jonathan Bronson</a>
- * @exports Vertex
  */
 var Vector = require('./vector');
 

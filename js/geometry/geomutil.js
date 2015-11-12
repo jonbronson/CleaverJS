@@ -1,3 +1,8 @@
+/**
+* @fileOverview This module provides geometry utilities.
+* @author Jonathan Bronson</a>
+*/
+
 var Point = require('./point');
 var Vector = require('./vector');
 var Vector3 = require('./vector3');
@@ -6,6 +11,7 @@ module.exports = (function(){
 
 'use strict';
 
+/** namespace */
 var GeomUtil = {
 
   /**
@@ -57,7 +63,7 @@ var GeomUtil = {
   /**
    * Returns an array of all interior angles in the mesh.
    * @param {Mesh}
-   * @returns {Array}
+   * @returns {Array.<number>}
    */
   computeMeshAngles: function(mesh) {
     var angles = [];

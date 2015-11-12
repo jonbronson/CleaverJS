@@ -1,7 +1,6 @@
 /**
  * @fileOverview This file defines the Matrix class.
  * @author Jonathan Bronson</a>
- * @exports Matrix
  */
 var Vector = require('geometry/vector');
 var Vector3 = require('geometry/vector3');

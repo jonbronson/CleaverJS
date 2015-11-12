@@ -1,7 +1,6 @@
 /**
  * @fileOverview This file defines the 3D Vector class.
  * @author Jonathan Bronson</a>
- * @exports Vector3
  */
 
 module.exports = (function(){

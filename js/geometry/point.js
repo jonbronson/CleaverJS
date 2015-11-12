@@ -1,7 +1,6 @@
 /**
 * @fileOverview This file defines the Point class.
 * @author Jonathan Bronson</a>
-* @exports Point
 */
 var Vector = require('./vector');
 

@@ -1,7 +1,6 @@
 /**
 * @fileOverview This file defines the Mesh class.
 * @author Jonathan Bronson</a>
-* @exports Mesh
 */
 var HalfEdge = require('./halfedge');
 var Triangle = require('./triangle');
@@ -153,7 +152,7 @@ Mesh.prototype.getFaces = function() {
 
 /**
  * Returns the three vertices of the given face
- * @returns {Array.<Vertex}
+ * @returns {Array.<Vertex>}
  */
 Mesh.prototype.getVerticesAroundFace = function(triangle) {
   var verts = [triangle.v1, triangle.v2, triangle.v3];
@@ -162,7 +161,7 @@ Mesh.prototype.getVerticesAroundFace = function(triangle) {
 
 /**
  * Returns the three halfedges that circle the given face
- * @returns {Array.<HalfEdge}
+ * @returns {Array.<HalfEdge>}
  */
 Mesh.prototype.getEdgesAroundFace = function(triangle) {
   var edges = [triangle.halfEdges[0],

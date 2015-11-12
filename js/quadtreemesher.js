@@ -1,7 +1,6 @@
 /**
  * @fileOverview This file defines the QuadTree Mesher class.
  * @author Jonathan Bronson</a>
- * @exports QuadTreeMesher
  */
 var QuadTree = require('./quadtree');
 var Triangle = require('./geometry/triangle');

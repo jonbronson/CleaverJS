@@ -1,7 +1,6 @@
 /**
 * @fileOverview This file defines the Rect class.
 * @author Jonathan Bronson</a>
-* @exports Rect
 */
 var Point = require('./point');
 
@@ -58,6 +57,7 @@ Rect.prototype.center = function() {
 /**
  * Returns a new empty rectangle.
  * @returns {Rect}
+ * @static
  */
 Rect.EMPTY = function() {
   return new Rect(0, 0, 0, 0);
