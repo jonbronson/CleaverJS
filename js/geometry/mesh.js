@@ -1,3 +1,8 @@
+/**
+* @fileOverview This file defines the Mesh class.
+* @author Jonathan Bronson</a>
+* @exports Mesh
+*/
 var HalfEdge = require('./halfedge');
 var Triangle = require('./triangle');
 var Vertex   = require('./vertex');
@@ -6,12 +11,27 @@ module.exports = (function(){
 
 'use strict';
 
+/**
+ * Creates a new Mesh object
+ * @class
+ * @constructor
+ * @alias Mesh
+ */
 var Mesh = function() {
   this.verts = [];
   this.faces = [];
   this.halfEdges = {};
 };
 
+/**
+ * Creates a new face for the mesh, using the given vertices. Any vertex
+ * not already in the mesh will be added to the vertex list.
+ * @param {Vertex} v1 First vertex of the face.
+ * @param {Vertex} v2 Second vertex of the face.
+ * @param {Vertex} v3 First vertex of the face.
+ * @param {number} material The material  of the face.
+ * @returns {Triangle} The newly created face.
+ */
 Mesh.prototype.createFace = function(v1, v2, v3, material) {
 	if (!v1 || !v2 || !v3) {
 		console.log('problem!');
@@ -34,6 +54,13 @@ Mesh.prototype.createFace = function(v1, v2, v3, material) {
 	}
 };
 
+/**
+ * Return the two half edges that span the two given vertices and creates them
+ * if they dont' already exist.
+ * @param {Vertex} v1
+ * @param {Vertex} v2
+ * @returns {Array.<HalfEdge>} The two half edges.
+ */
 Mesh.prototype.halfEdgeForVerts = function(v1, v2) {
 	var key = v1.pos.toString() + '|' + v2.pos.toString();
   var halfEdge = this.halfEdges[key];
@@ -45,6 +72,10 @@ Mesh.prototype.halfEdgeForVerts = function(v1, v2) {
   return halfEdge;
 };
 
+/**
+ * Build adjacency information so neighbor queries can be made. This includes
+ * generating edges, and storing incident faces and edges.
+ */
 Mesh.prototype.buildAdjacency = function() {
 
 	// todo relace by using v[0]..v[2] instead of v1..v3
@@ -74,14 +105,29 @@ Mesh.prototype.buildAdjacency = function() {
 	}
 };
 
+/**
+ * Returns all edges that are incident to the given vertex.
+ * @param {Vertex} vertex
+ * @returns {Array.<HalfEdge>}
+ */
 Mesh.prototype.getEdgesAroundVertex = function(vertex) {
 	return vertex.halfEdges;
 };
 
+/**
+ * Returns all faces that are incident to the given vertex.
+ * @param {Vertex} vertex
+ * @returns {Array.<Face>}
+ */
 Mesh.prototype.getFacesAroundVertex = function(vertex) {
 	return vertex.faces
 };
 
+/**
+ * Returns the faces that are incident to the given edge.
+ * @param {HalfEdge} edge
+ * @returns {Array.<Faces>}
+ */
 Mesh.prototype.getFacesAroundEdge = function(edge) {
 	var faces = [];
 
@@ -97,16 +143,27 @@ Mesh.prototype.getFacesAroundEdge = function(edge) {
 	return faces;
 };
 
-/* Todo, replace with Faces and make private variables use _ notation */
+/**
+ * Returns the list of faces in the mesh.
+ * @returns {Array.<Faces>}
+ */
 Mesh.prototype.getFaces = function() {
 	return this.faces;
 }
 
+/**
+ * Returns the three vertices of the given face
+ * @returns {Array.<Vertex}
+ */
 Mesh.prototype.getVerticesAroundFace = function(triangle) {
 	var verts = [triangle.v1, triangle.v2, triangle.v3];
 	return verts;
 };
 
+/**
+ * Returns the three halfedges that circle the given face
+ * @returns {Array.<HalfEdge}
+ */
 Mesh.prototype.getEdgesAroundFace = function(triangle) {
 	var edges = [triangle.halfEdges[0],
 							 triangle.halfEdges[1],
