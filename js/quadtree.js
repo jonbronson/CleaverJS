@@ -258,8 +258,15 @@ QuadTree.prototype.toSVG = function() {
 };
 
 
-
-var maxMaterialAt = function(fields, x, y) {
+/**
+ * Return the maximum material at the given coordinate
+ * @param {Array.<Field>} fields The array of fields to consider
+ * @param {number} x The x coordinate to look at
+ * @param {number} y The y coordinate to look at
+ * @return {number} The maximum material
+ * @private
+ */
+var maxMaterialAt_ = function(fields, x, y) {
   var max = 0;
   var maxValue = fields[max].valueAt(x, y)
   for (var i=0; i < fields.length; i++) {
@@ -274,6 +281,13 @@ var maxMaterialAt = function(fields, x, y) {
   return max;
 };
 
+/**
+ * Create a new QuadTree from a set of functional fields
+ * @param {Array.<Field>} fields The array of fields to use.
+ * @param {number} maxLevel The maximum depth of the quadtree.
+ * @return {QuadTree} The new QuadTree
+ * @static
+ */
 QuadTree.createFromCSGFields = function(fields, maxLevel) {
   if (!fields || fields.length < 1) {
     throw new Error('Must provide at least two input fields');
@@ -286,10 +300,10 @@ QuadTree.createFromCSGFields = function(fields, maxLevel) {
     for (var x=0; x < bounds.width(); x++) {
       var cellBounds = new Rect(x, y, x+1, y+1);
 
-      var lowerLeftMaterial  = maxMaterialAt(fields, cellBounds.left,     cellBounds.bottom);
-      var lowerRightMaterial = maxMaterialAt(fields, cellBounds.left + 1, cellBounds.bottom);
-      var upperRightMaterial = maxMaterialAt(fields, cellBounds.left + 1, cellBounds.bottom + 1);
-      var upperLeftMaterial  = maxMaterialAt(fields, cellBounds.left,     cellBounds.bottom + 1);
+      var lowerLeftMaterial  = maxMaterialAt_(fields, cellBounds.left,     cellBounds.bottom);
+      var lowerRightMaterial = maxMaterialAt_(fields, cellBounds.left + 1, cellBounds.bottom);
+      var upperRightMaterial = maxMaterialAt_(fields, cellBounds.left + 1, cellBounds.bottom + 1);
+      var upperLeftMaterial  = maxMaterialAt_(fields, cellBounds.left,     cellBounds.bottom + 1);
 
       // if cell contains transition
       if (lowerLeftMaterial  != lowerRightMaterial ||
@@ -311,8 +325,13 @@ QuadTree.createFromCSGFields = function(fields, maxLevel) {
   return tree;
 };
 
+/**
+ * Create a new QuadTree from a set of input FloatFields
+ * @param {Array.<Field>} fields The array of fields to use.
+ * @return {QuadTree} The new QuadTree
+ * @static
+ */
 QuadTree.createFromFloatFields = function(fields) {
-
   if (!fields || fields.length < 1) {
     throw new Error('Must provide at least two input fields');
   }
@@ -332,10 +351,10 @@ QuadTree.createFromFloatFields = function(fields) {
     for (var x=0; x < bounds.width(); x++) {
       var cellBounds = new Rect(x, y, x+1, y+1);
 
-      var lowerLeftMaterial  = maxMaterialAt(fields, cellBounds.left,     cellBounds.bottom);
-      var lowerRightMaterial = maxMaterialAt(fields, cellBounds.left + 1, cellBounds.bottom);
-      var upperRightMaterial = maxMaterialAt(fields, cellBounds.left + 1, cellBounds.bottom + 1);
-      var upperLeftMaterial  = maxMaterialAt(fields, cellBounds.left,     cellBounds.bottom + 1);
+      var lowerLeftMaterial  = maxMaterialAt_(fields, cellBounds.left,     cellBounds.bottom);
+      var lowerRightMaterial = maxMaterialAt_(fields, cellBounds.left + 1, cellBounds.bottom);
+      var upperRightMaterial = maxMaterialAt_(fields, cellBounds.left + 1, cellBounds.bottom + 1);
+      var upperLeftMaterial  = maxMaterialAt_(fields, cellBounds.left,     cellBounds.bottom + 1);
 
       //console.log(lowerLeftMaterial  + ' ' + upperLeftMaterial + ' '
       //          + lowerRightMaterial + ' ' + upperRightMaterial);
@@ -359,10 +378,14 @@ QuadTree.createFromFloatFields = function(fields) {
   return tree;
 };
 
+/**
+ * Create a new QuadTree from a sizing field
+ * @param {Field} sizingField
+ * @return {QuadTree} The new QuadTree
+ * @static
+ */
 QuadTree.createFromSizingField = function(sizingField) {
-
   var tree = new QuadTree(sizingField.getBounds());
-
   var queue = [];
   queue.push(tree.getRoot());
 
@@ -382,7 +405,12 @@ QuadTree.createFromSizingField = function(sizingField) {
   return tree;
 };
 
-var pow2 = function(x) {
+/**
+ * Fast lookup for powers of two.
+ * @param {number} x The number to take 2 to the power of.
+ * @private
+ */
+var pow2_ = function(x) {
   switch (x) {
     case -20: return 9.53674e-07;
     case -19: return 1.90735e-06;
@@ -466,8 +494,6 @@ var DIR_OPPOSITES = [
   ];
 
 var MAX_LEVELS = 8;
-
-
 
 return QuadTree;
 
