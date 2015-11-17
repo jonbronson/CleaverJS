@@ -1,7 +1,6 @@
 /**
  * @fileOverview This file defines the Intersection field class
  * @author Jonathan Bronson</a>
- * @exports IntersectionField
  */
 
 module.exports = (function(){
@@ -9,14 +8,14 @@ module.exports = (function(){
 'use strict';
 
 /**
-* Creates a new IntersectionField object
-* @class
-* @param {Field[]} fields The array of fields which this field is the intersection of.
-* @param {Rect} bounds The bounds of the field.
-* @constructor
-* @alias IntersectionField
-* @extends Field
-*/
+ * Creates a new IntersectionField object
+ * @class
+ * @param {Field[]} fields The array of fields which this field is the intersection of.
+ * @param {Rect} bounds The bounds of the field.
+ * @constructor
+ * @alias IntersectionField
+ * @extends Field
+ */
 var IntersectionField = function(fields, bounds) {
   this.fields = fields;
   this.bounds = bounds;

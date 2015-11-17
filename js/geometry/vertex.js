@@ -1,7 +1,6 @@
 /**
  * @fileOverview This file defines the 2D Vertex class.
  * @author Jonathan Bronson</a>
- * @exports Vertex
  */
 var Vector = require('./vector');
 
@@ -10,12 +9,12 @@ module.exports = (function(){
 'use strict';
 
 /**
-* Creates a new Vertex object
-* @class
-* @param {Point} position The position of the vertex
-* @constructor
-* @alias Vertex
-*/
+ * Creates a new Vertex object
+ * @class
+ * @param {Point} position The position of the vertex
+ * @constructor
+ * @alias Vertex
+ */
 var Vertex = function(position) {
   this.pos = position ? position : Vector.ZERO();
   this.halfEdges = [];

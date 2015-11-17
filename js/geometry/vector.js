@@ -1,21 +1,20 @@
 /**
  * @fileOverview This file defines the 2D Vector class.
  * @author Jonathan Bronson</a>
- * @exports Vector
  */
 
-module.exports = (function(){ 
+module.exports = (function(){
 
 'use strict';
 
 /**
-* Creates a new Vector object
-* @class
-* @param {number} x The x coordinate.
-* @param {number} y The y coordinate.
-* @constructor
-* @alias Vector
-*/
+ * Creates a new Vector object
+ * @class
+ * @param {number} x The x coordinate.
+ * @param {number} y The y coordinate.
+ * @constructor
+ * @alias Vector
+ */
 var Vector = function(x, y) {
   this.x = x;
   this.y = y;
@@ -23,7 +22,7 @@ var Vector = function(x, y) {
 
 
 /**
- * Creates a string representing coordinates of the vector 
+ * Creates a string representing coordinates of the vector
  * @returns {string}
  */
 Vector.prototype.toString = function() {
@@ -40,13 +39,13 @@ Vector.prototype.createPerpendicular = function() {
 };
 
 
-/** 
+/**
  * Returns the sum of this vector and the provided vector.
  * @param {Vector} vector The vector to add.
  * @returns {Vector}
  */
 Vector.prototype.plus = function(vector) {
-  return new Vector(this.x + vector.x, 
+  return new Vector(this.x + vector.x,
                     this.y + vector.y);
 };
 
@@ -57,12 +56,12 @@ Vector.prototype.plus = function(vector) {
  * @returns {Vector}
  */
 Vector.prototype.minus = function(vector) {
-  return new Vector(this.x - vector.x, 
+  return new Vector(this.x - vector.x,
                     this.y - vector.y);
 };
 
 
-/** 
+/**
  * Returns the dot product of this vector and the provided vector.
  * @param {Vector} The second vector.
  * @returns {number}
@@ -72,7 +71,7 @@ Vector.prototype.dot = function(vector) {
 };
 
 
-/** 
+/**
  * Returns the cross product of this vector and the provided vector.
  * @param {Vector} The second vector.
  * @returns {Vector}
@@ -82,7 +81,7 @@ Vector.prototype.cross = function(vector) {
 };
 
 
-/** 
+/**
  * Adds the input vector and returns the result.
  * @param {Vector} vector The vector to add.
  * @returns {Vector}
@@ -94,7 +93,7 @@ Vector.prototype.add = function(vector) {
 };
 
 
-/** 
+/**
  * Subtracts the input vector and returns the result.
  * @param {Vector} vector The vector to subtract.
  * @returns {Vector}
@@ -106,7 +105,7 @@ Vector.prototype.subtract = function(vector) {
 };
 
 
-/** 
+/**
  * Scales the vector and and returns the result.
  * @param {number} scale The scalar value to multiply.
  * @returns {Vector}
@@ -174,9 +173,9 @@ Vector.min = function(a, b) {
  */
 Vector.max = function(a, b) {
   return new Vector((a.x > b.x) ? a.x : b.x,
-                		(a.y > b.y) ? a.y : b.y);
+                    (a.y > b.y) ? a.y : b.y);
 };
- 
+
 
 /**
  * Computes the angle between the two input vectors
@@ -208,7 +207,7 @@ Vector.Length = function(vector) {
  * @returns {number} The dot product
  */
 Vector.dot = function(a, b) {
-	return a.x*b.x + a.y*b.y;
+  return a.x*b.x + a.y*b.y;
 };
 
 
@@ -224,11 +223,11 @@ Vector.cross = function(a, b) {
 
 
 /**
- * Returns a new empty vector (i.e. (0, 0)) 
+ * Returns a new empty vector (i.e. (0, 0))
  * @returns {Vector} The empty vector
  */
-Vector.ZERO = function() { 
-  return new Vector(0, 0) 
+Vector.ZERO = function() {
+  return new Vector(0, 0)
 };
 
 

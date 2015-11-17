@@ -1,7 +1,6 @@
 /**
  * @fileOverview This file defines the scaled field class
  * @author Jonathan Bronson</a>
- * @exports ScaledField
  */
 var Vector = require('../geometry/vector');
 
@@ -9,36 +8,53 @@ module.exports = (function(){
 
 'use strict';
 
+/**
+ * Creates a new ScaledField object
+ * @class
+ * @param {Field} field
+ * @param {number} scale
+ * @param {Rect} bounds
+ * @constructor
+ * @alias ScaledField
+ * @extends Field
+ */
 var ScaledField = function(field, scale, bounds) {
   this.field = field;
   this.scale = scale;
   this.bounds = bounds;
 };
 
-
 /**
- * @overide
+ * Get the value of the field at coordinate (x,y)
+ * @override
+ * @returns {number}
  */
 ScaledField.prototype.valueAt = function(x, y) {
   return this.scale * this.field.valueAt(x,y);
 };
 
 /**
- * @overide
+ * Get the bounding box of the field
+ * @override
+ * @returns {Rect}
  */
 ScaledField.prototype.getBounds = function() {
   return this.bounds;
 };
 
 /**
- * @overide
+ * Get the width of the field
+ * @override
+ * @returns {number}
  */
 ScaledField.prototype.getWidth = function() {
   return this.bounds.width();
 };
 
 /**
- * @overide
+ * Get the height of the field
+ * @override
+ * @returns {number}
  */
 ScaledField.prototype.getHeight = function() {
   return this.bounds.height();

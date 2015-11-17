@@ -1,7 +1,22 @@
-module.exports = (function(){ 
+/**
+ * @fileOverview This file defines the Triangle class.
+ * @author Jonathan Bronson</a>
+ */
+
+module.exports = (function(){
 
 'use strict';
 
+/**
+ * Creates a new Triangle object
+ * @class
+ * @param {Vertex} v1
+ * @param {Vertex} v2
+ * @param {Vertex} v3
+ * @param {number} material
+ * @constructor
+ * @alias Triangle
+ */
 var Triangle = function(v1, v2, v3, material) {
   this.v1 = v1;
   this.v2 = v2;
@@ -22,17 +37,21 @@ var Triangle = function(v1, v2, v3, material) {
   this.halfEdges = [];
 };
 
+/**
+ * Create an svg object to render the triangle.
+ * @returns {Object}
+ */
 Triangle.prototype.toSVG = function() {
 
-  var path = document.createElementNS("http://www.w3.org/2000/svg","path"); 
-  // path.setAttribute("id", this.id); 
+  var path = document.createElementNS("http://www.w3.org/2000/svg","path");
+  // path.setAttribute("id", this.id);
   var pathString = ' M ' + this.v1.pos.x + ' ' + this.v1.pos.y +
-                   ' L ' + this.v2.pos.x + ' ' + this.v2.pos.y + 
-                   ' L ' + this.v3.pos.x + ' ' + this.v3.pos.y + 
+                   ' L ' + this.v2.pos.x + ' ' + this.v2.pos.y +
+                   ' L ' + this.v3.pos.x + ' ' + this.v3.pos.y +
                    ' L ' + this.v1.pos.x + ' ' + this.v1.pos.y;
 
-  path.setAttribute("d", pathString);  
-  path.setAttribute('stroke-width', '0.1')
+  path.setAttribute("d", pathString);
+  path.setAttribute('stroke-width', '0.2')
   var stroke = 'black';
   var fill = '#FFFFFF';
   switch (this.material) {
@@ -61,7 +80,7 @@ Triangle.prototype.toSVG = function() {
       stroke = 'black';
       break;
   }
-  path.setAttribute('fill', fill);   
+  path.setAttribute('fill', fill);
   path.setAttribute('stroke', stroke);
 
   return path;

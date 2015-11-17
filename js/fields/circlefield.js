@@ -1,7 +1,6 @@
 /**
  * @fileOverview This file defines the distance field for a circle
  * @author Jonathan Bronson</a>
- * @exports CircleField
  */
 var Point = require('../geometry/point');
 
@@ -10,16 +9,16 @@ module.exports = (function(){
 'use strict';
 
 /**
-* Creates a new CircleField object
-* @class
-* @param {number} cx Horizontal coordinate of the circle's center.
-* @param {number} cy Vertical coordinate of the circle's center.
-* @param {number} r Radius of the circle.
-* @param {Rect} bounds The bounding box of the field.
-* @constructor
-* @alias CircleField
-* @extends Field
-*/
+ * Creates a new CircleField object
+ * @class
+ * @param {number} cx Horizontal coordinate of the circle's center.
+ * @param {number} cy Vertical coordinate of the circle's center.
+ * @param {number} r Radius of the circle.
+ * @param {Rect} bounds The bounding box of the field.
+ * @constructor
+ * @alias CircleField
+ * @extends Field
+ */
 var CircleField = function(cx, cy, r, bounds) {
   this.c = new Point(cx, cy);
   this.r = r;

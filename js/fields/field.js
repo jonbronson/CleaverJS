@@ -1,9 +1,8 @@
 /**
  * @fileOverview This file defines the interface for scalar fields
  * @author Jonathan Bronson</a>
- * TODO: Rename ScalarField
- * @exports Field
  */
+
 module.exports = (function(){
 
 'use strict';

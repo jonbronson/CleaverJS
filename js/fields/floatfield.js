@@ -1,7 +1,6 @@
 /**
 * @fileOverview This file defines the FloatField class.
 * @author Jonathan Bronson</a>
-* @exports FloatField
 */
 
 var Field = require('./field');
@@ -12,38 +11,51 @@ module.exports = (function(){
 'use strict';
 
 /**
-* Creates a new FloatField object
-* @class
-* @param {number} width The width of the data array
-* @param {number} height The height of the data array
-* @param {Array} data The float field array.
-* @constructor
-* @alias FloatField
-* @extends Field
-*/
+ * Creates a new FloatField object
+ * @class
+ * @param {number} width The width of the data array
+ * @param {number} height The height of the data array
+ * @param {Array.<number>} data The float field array.
+ * @constructor
+ * @extends Field
+ * @alias FloatField
+ */
 var FloatField = function(width, height, data) {
-	this.data = data;
+  this.data = data;
   this.bounds = new Rect(0, 0, width, height);
 };
 FloatField.prototype = Object.create(Field.prototype);
 
+/**
+ * Returns the nearest neighbor L1 value.
+ * @param {number} x coordinate
+ * @param {number} y coordinate
+ * @returns {number}
+ */
 FloatField.prototype.nearestValueAt = function(x, y) {
-	var x_index = Math.round(x);
-	var y_index = Math.round(y);
-	return this.data[y_index*this.bounds.size.x + x_index];
+  var x_index = Math.round(x);
+  var y_index = Math.round(y);
+  return this.data[y_index*this.bounds.size.x + x_index];
 };
 
+/**
+ * Clamps the value between min and max.
+ * @param {number} value The value to clamp.
+ * @param {number} min The minimum value of the valid range.
+ * @param {number} max The maximum value of the valid range.
+ * @returns {number}
+ */
 var clamp = function(value, min, max) {
   return Math.min(Math.max(value, min), max);
 };
 
 /**
- * @overide
+ * @override
  */
 FloatField.prototype.valueAt = function(x, y) {
   x -= 0.5;
   y -= 0.5;
-	var u = x % 1.0;
+  var u = x % 1.0;
   var v = y % 1.0;
 
   var i0 = Math.floor(x);

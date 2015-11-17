@@ -1,7 +1,6 @@
 /**
  * @fileOverview This file defines the 3D Vector class.
  * @author Jonathan Bronson</a>
- * @exports Vector3
  */
 
 module.exports = (function(){
@@ -9,14 +8,14 @@ module.exports = (function(){
 'use strict';
 
 /**
-* Creates a new Vector3 object
-* @class
-* @param {number} x The x coordinate.
-* @param {number} y The y coordinate.
-* @param {number} z The z coordinate.
-* @constructor
-* @alias Vector3
-*/
+ * Creates a new Vector3 object
+ * @class
+ * @param {number} x The x coordinate.
+ * @param {number} y The y coordinate.
+ * @param {number} z The z coordinate.
+ * @constructor
+ * @alias Vector3
+ */
 var Vector3 = function(x, y, z) {
   this.x = x;
   this.y = y;

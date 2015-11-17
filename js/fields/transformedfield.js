@@ -1,7 +1,6 @@
 /**
  * @fileOverview This file defines the Transformed field class
  * @author Jonathan Bronson</a>
- * @exports TransformedField
  */
 var Vector = require('../geometry/vector');
 
@@ -10,14 +9,15 @@ module.exports = (function(){
 'use strict';
 
 /**
-* Creates a new TransformedField object
-* @class
-* @param {Field} field The field which this field transforms.
-* @param {Matrix} transform The transform matrix to apply to the input field.
-* @constructor
-* @alias TransformedField
-* @extends Field
-*/
+ * Creates a new TransformedField object
+ * @class
+ * @param {Field} field
+ * @param {Matrix} transform
+ * @param {Rect} bounds
+ * @constructor
+ * @alias TransformedField
+ * @extends Field
+ */
 var TransformedField = function(field, transform, bounds) {
   this.field = field;
   this.transform = transform;
@@ -26,7 +26,9 @@ var TransformedField = function(field, transform, bounds) {
 };
 
 /**
- * @overide
+ * Get the value of the field at coordinate (x,y)
+ * @override
+ * @returns {number}
  */
 TransformedField.prototype.valueAt = function(x, y) {
   var transformedTo = this.inverseTransform.multiplyVector(new Vector(x,y));
@@ -34,21 +36,27 @@ TransformedField.prototype.valueAt = function(x, y) {
 };
 
 /**
- * @overide
+ * Get the bounding box of the field
+ * @override
+ * @returns {Rect}
  */
 TransformedField.prototype.getBounds = function() {
   return this.bounds;
 };
 
 /**
- * @overide
+ * Get the width of the field
+ * @override
+ * @returns {number}
  */
 TransformedField.prototype.getWidth = function() {
   return this.bounds.size.x;
 };
 
 /**
- * @overide
+ * Get the height of the field
+ * @override
+ * @returns {number}
  */
 TransformedField.prototype.getHeight = function() {
   return this.bounds.size.y;

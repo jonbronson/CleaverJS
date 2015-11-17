@@ -1,4 +1,10 @@
-window.Cleaver = {};
+/**
+ * @fileOverview This file creates the static Cleaver namespace
+ * @author Jonathan Bronson</a>
+ */
+
+/** @namespace */
+var Cleaver = {};
 
 Cleaver.CircleField    = require('fields/circlefield');
 Cleaver.CleaverMesher  = require('cleavermesher');
