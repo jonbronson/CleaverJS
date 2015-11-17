@@ -28,7 +28,7 @@ var QuadTree = function(bounds, opt_maxLevels) {
   this.nLevels = this.maxLevels + 1;
   this.rootLevel = this.maxLevels;
 
-  this.maxVal = pow2(this.rootLevel);
+  this.maxVal = pow2_(this.rootLevel);
   this.maxCode = this.maxVal - 1;
 
   this.root = new Cell(bounds);
@@ -341,7 +341,7 @@ QuadTree.createFromFloatFields = function(fields) {
   var resolution = 0;
   var maxLevel = 0;
   while (resolution < Math.max(bounds.width(), bounds.height())) {
-    resolution = pow2(++maxLevel);
+    resolution = pow2_(++maxLevel);
   }
 
   console.log('requires no more than ' + maxLevel + ' levels to achieve ' + resolution + ' res');
