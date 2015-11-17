@@ -491,7 +491,7 @@ CleaverMesher.prototype.cleave = function() {
   this.sampleFields();
   this.computeInterfaces();
   this.generalizeTriangles();
-  //this.snapAndWarpViolations();
+  this.snapAndWarpViolations();
   this.createStencilTriangles();
 };
 

@@ -47,6 +47,8 @@ Mesh.prototype.halfEdgeForVerts = function(v1, v2) {
 
 Mesh.prototype.buildAdjacency = function() {
 
+	this.halfEdges = [];
+
 	// todo relace by using v[0]..v[2] instead of v1..v3
 	for (var f=0; f < this.faces.length; f++) {
 		var v1 = this.faces[f].v1;
