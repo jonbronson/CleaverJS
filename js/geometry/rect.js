@@ -63,8 +63,24 @@ Rect.EMPTY = function() {
   return new Rect(0, 0, 0, 0);
 };
 
-// TODO: Implement
-Rect.prototype.containsPoint = function(point) { };
+
+/**
+ * Tests whether the given point is contained in or on the rectangle.
+ * @returns {boolean}
+ */
+Rect.prototype.containsPoint = function(point) {
+  return (point.x >= this.left  && point.y >= this.bottom &&
+          point.x <= this.right && point.y <= this.top);
+};
+
+/**
+ * Tests whether the given point is contained in, but not on, the rectangle.
+ * @returns {boolean}
+ */
+Rect.prototype.strictlyContainsPoint = function(point) {
+  return (point.x > this.left  && point.y > this.bottom &&
+          point.x < this.right && point.y < this.top);
+};
 
 // TODO: Implement
 Rect.prototype.containsRect = function(rect) { };
@@ -73,7 +89,7 @@ Rect.prototype.containsRect = function(rect) { };
 Rect.prototype.strictlyContainsRect = function(rect) { };
 
 // TODO: Implement
-Rect.prototype.intersects = function(rect) { };
+Rect.prototype.intersectsRect = function(rect) { };
 
 return Rect;
 
