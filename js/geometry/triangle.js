@@ -71,6 +71,10 @@ Triangle.prototype.toSVG = function() {
       fill = '#bbbbFF';
       stroke = '#000077';
       break;
+    case 4:
+      fill = '#fbb0cF';
+      stroke = '#bf0c3F';
+      break;
     default:
       fill = '#ffffff';
       stroke = 'black';

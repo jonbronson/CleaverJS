@@ -28,3 +28,5 @@ Cleaver.Vector         = require('geometry/vector');
 Cleaver.Matrix         = require('matrix');
 Cleaver.Vector3        = require('geometry/vector3');
 Cleaver.Vertex         = require('geometry/vertex');
+
+window.Cleaver = Cleaver;

@@ -8,6 +8,11 @@ module.exports = (function(){
 
 'use strict';
 
+var _00 = 0;
+var _01 = 1;
+var _10 = 2;
+var _11 = 3;
+
 /**
  * Creates a new QuadTree Cell object
  * @class
@@ -43,7 +48,7 @@ QuadCell.prototype.subdivide = function() {
     var left = this.bounds.left + ((i & _01) >> 0)*width;
     var bottom = this.bounds.bottom + ((i & _10) >> 1)*height;
     var bounds = new Rect(left, bottom, left + width, bottom + height);
-    var child = new Cell(bounds);
+    var child = new QuadCell(bounds);
     child.level = this.level - 1;
     child.xLocCode = this.xLocCode | (((i & _01) >> 0) << child.level);
     child.yLocCode = this.yLocCode | (((i & _10) >> 1) << child.level);
